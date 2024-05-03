@@ -1,0 +1,3586 @@
+{
+ "cells": [
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "id": "wZDD5tQTYKnb"
+   },
+   "source": [
+    "# **Lab 1**\n",
+    "\n",
+    "## Python Quickstart"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "id": "GOBl1VICYKnc"
+   },
+   "source": [
+    "Welcome to TDS2101 _Introduction to Data Science_ lab exercises! For some weeks, you will be given _Jupyter notebook_ tutorials in the form of lab coding exercises and other questions discussing on concepts you have learned during lecture. Understanding technical things by coding them out is the best way to learn, so these labs cover a lot of essential topics, making them come alive as you learn."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "id": "hl3brzIpYKnd"
+   },
+   "source": [
+    "> **Credit note:**\n",
+    "> Part of this lab was adapted from UC Berkeley's Data 8 course. The main contents of this Python quickstart lab was adapted from the adaptation by [Volodymyr Kuleshov](http://web.stanford.edu/~kuleshov/) and [Isaac Caswell](https://symsys.stanford.edu/viewing/symsysaffiliate/21335) for Stanford University's `CS228`, which was originally from Stanford University's `CS231n` Python tutorial by Justin Johnson (http://cs231n.github.io/python-numpy-tutorial/). Confusing? Nevermind, it's a good starter tutorial that you could use :-) "
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "id": "gmjur9B-YKnd"
+   },
+   "source": [
+    "Before we get started, let's understand how to use and navigate in Jupyter notebooks."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "id": "vhscYiVaYKne"
+   },
+   "source": [
+    "## 0. Jupyter notebooks\n",
+    "This webpage is called a **Jupyter notebook**. A notebook is a place to write programs and view their results, and also to write text. A Jupyter notebook can be opened in various ways. The two most popular ways: \n",
+    "1.   By installing the Jupyter package into your Python installation. If you have a full development suite like **Anaconda** installed, it comes pre-packed. Otherwise, you can also install it manually into your existing Python environment.\n",
+    "2.   By opening the file with **Google Colab**, which is specifically made as a collaborative notebook (more than one person can edit).\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "id": "FQSzNRJJHnhK"
+   },
+   "source": [
+    "### 0.1. Text cells\n",
+    "In a notebook, each rectangle containing text or code is called a *cell*.\n",
+    "\n",
+    "Text cells (like this one) can be edited by double-clicking on them. They're written in a simple format called [Markdown](http://daringfireball.net/projects/markdown/syntax) to add formatting and section headings.  You don't need to learn Markdown, but you might want to.\n",
+    "\n",
+    "After you edit a text cell, click the \"run cell\" button at the top that looks like ▶| or hold down `shift` + `return` to confirm any changes. (Try not to delete the instructions of the lab.)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "id": "RswVDICwYKnf"
+   },
+   "source": [
+    "### 0.2. Code cells\n",
+    "Other cells contain Python 3 code. Running a code cell will execute all of the code it contains.\n",
+    "\n",
+    "To run the code in a code cell, first click on that cell to activate it.  It'll be highlighted with a little green or blue rectangle.  Next, either press ▶| or hold down `shift` + `return`.\n",
+    "\n",
+    "Try running this cell:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 84,
+   "metadata": {
+    "id": "47035kplYKnf"
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Hello, World!\n"
+     ]
+    }
+   ],
+   "source": [
+    "print(\"Hello, World!\")"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "id": "mY5Qr41HYKnj"
+   },
+   "source": [
+    "And this one:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 85,
+   "metadata": {
+    "id": "GsJSeFIIYKnk"
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "👋, 🌏!\n"
+     ]
+    }
+   ],
+   "source": [
+    "print(\"\\N{WAVING HAND SIGN}, \\N{EARTH GLOBE ASIA-AUSTRALIA}!\")"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "id": "QDPd1pYhYKnn"
+   },
+   "source": [
+    "Interesting...emojis... The fundamental building block of Python code is an expression. Cells can contain multiple lines with multiple expressions. When you run a cell, the lines of code are executed in the order in which they appear. Every `print` expression prints a line. Run the next cell and notice the order of the output."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 86,
+   "metadata": {
+    "id": "Y9phyB3wYKnn"
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "First this line is printed,\n",
+      "and then this one.\n"
+     ]
+    }
+   ],
+   "source": [
+    "print(\"First this line is printed,\")\n",
+    "print(\"and then this one.\")"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "id": "RG27Vh_yYKnq"
+   },
+   "source": [
+    "### 0.3. Writing Jupyter notebooks\n",
+    "You can use Jupyter notebooks for your own projects or documents.  When you make your own notebook, you'll need to create your own cells for text and code.\n",
+    "\n",
+    "To add a cell, click the + button in the menu bar.  It'll start out as a text cell.  You can change it to a code cell by clicking inside it so it's highlighted, clicking the drop-down box next to the restart (⟳) button in the menu bar, and choosing \"Code\".\n",
+    "\n",
+    "**Try out**: Add a code cell below this one.  Write code in it that prints out:\n",
+    "   \n",
+    "    A whole new cell! ♪🌏♪\n",
+    "\n",
+    "(That musical note symbol is like the Earth symbol. Its long-form name is `\\N{EIGHTH NOTE}`.)\n",
+    "\n",
+    "Run your cell to verify that it works."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 87,
+   "metadata": {
+    "id": "L707vKDhV2b9"
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "A whole new cell! ♪🌏♪ \n"
+     ]
+    }
+   ],
+   "source": [
+    " print(\"A whole new cell! \\N{EIGHTH NOTE}\\N{EARTH GLOBE ASIA-AUSTRALIA}\\N{EIGHTH NOTE} \")"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "id": "T7bM0aztYKnr"
+   },
+   "source": [
+    "### 0.4. Errors\n",
+    "Python is a language, and like natural human languages, it has rules.  It differs from natural language in two important ways:\n",
+    "1. The rules are *simple*.  You can learn most of them in a few weeks and gain reasonable proficiency with the language within this trimester.\n",
+    "2. The rules are *rigid*.  If you're proficient in a natural language, you can understand a non-proficient speaker, glossing over small mistakes.  A computer running Python code is not smart enough to do that.\n",
+    "\n",
+    "Whenever you write code, you'll make mistakes.  When you run a code cell that has errors, Python will sometimes produce error messages to tell you what you did wrong.\n",
+    "\n",
+    "Errors are okay; even experienced programmers make many errors.  When you make an error, you just have to find the source of the problem, fix it, and move on.\n",
+    "\n",
+    "**Try out**: We have made an error in the next cell.  Run it and see what happens."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 88,
+   "metadata": {
+    "id": "8lKmjmccYKnr"
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "This line is missing something.\n"
+     ]
+    }
+   ],
+   "source": [
+    "print(\"This line is missing something.\")"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "id": "jb-w7RBYYKnu"
+   },
+   "source": [
+    "The last line of the error output attempts to tell you what went wrong.  The *syntax* of a language is its structure, and this `SyntaxError` tells you that you have created an illegal structure.  \"`EOF`\" means \"end of file,\" so the message is saying Python expected you to write something more (in this case, a right parenthesis) before finishing the cell.\n",
+    "\n",
+    "There's a lot of terminology in programming languages, but you don't need to know it all in order to program effectively. If you see a cryptic message like this, you can often get by without deciphering it. \n",
+    "\n",
+    "Try to fix the code above so that you can run the cell and see the intended message instead of an error."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "id": "NeU8NzhJYKnv"
+   },
+   "source": [
+    "**Note:** If you use option **Runtime** > **Run All** (in Jupyter Notebook it is **Cell** > **Run All**) from the toolbar menu, all code cells in this notebook will be run in order. However, the notebook stops running code cells if it hits an error, like the one in the cell above. Use this cautiously as it makes the notebook run redundantly over the cells."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "id": "Dh5AiOKXYKnv"
+   },
+   "source": [
+    "### 0.5. The Kernel\n",
+    "The kernel is a program that executes the code inside your notebook and outputs the results. \n",
+    "\n",
+    "For *Google Colab*: At the top right of your window, you can see a green tick, which shows that the kernel is idle or ready to execute tasks. When it is busy running some code, it will turn into three green dots.\n",
+    "\n",
+    "For *Jupyter Notebook*: In the top right of your window, you can see a circle that indicates the status of your kernel. If the circle is empty (⚪), the kernel is idle and ready to execute code. If the circle is filled in (⚫), the kernel is busy running some code. \n",
+    "\n",
+    "Next to every code cell, you'll see some a bracket `[...]`. Before you run the cell, you'll see `[ ]`. When the cell is running, you'll see `In [*]` (or a play animation for Google Colab). If you see an asterisk (\\*) next to a cell that doesn't go away, it's likely that the code inside the cell is taking too long to run, and it might be a good time to interrupt the kernel (discussed below). When a cell has finished running, you'll see a number inside the brackets, like: `[1]`. The number corresponds to the order in which you run the cells; so, the first cell you run will show a 1 when it's finished running, the second will show a 2, and so on. \n",
+    "\n",
+    "You may run into problems where your kernel is stuck for an excessive amount of time, your notebook is very slow and unresponsive, or your kernel loses its connection. If this happens, try the following steps:\n",
+    "1. At the top of your screen, click **Kernel** > **Interrupt** (in Colab, it's **Runtime** > **Interrupt execution**).\n",
+    "2. If that doesn't help, click **Kernel** > **Restart** (In Colab, it's **Runtime** > **Restart runtime**). If you do this, you will have to run your code cells from the start of your notebook up until where you paused your work.\n",
+    "3. If that doesn't help, restart your server. First, save your work by clicking **File** at the top left of your screen, then **Save**. Next, shut down the kernel and restart the server all over again (in Colab, it's **Runtime** > **Factory reset runtime**). Then, navigate back to the notebook you were working on. You'll still have to run your code cells again."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "id": "Ep65lOeTYKnw"
+   },
+   "source": [
+    "## 1. Introduction"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "id": "gJwQehRoYKnx"
+   },
+   "source": [
+    "Python is a great general-purpose programming language on its own, but with the help of a few popular libraries (numpy, matplotlib, pandas) it becomes a powerful environment for scientific computing and data analysis.\n",
+    "\n",
+    "We expect that some of you may have some experience with Python and numpy; for the rest of you, this section will serve as a quick crash course on basic concepts in Python programming language. Many of these concepts are similar to that of other languages that you may know."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "id": "u4T0t2q5YKny"
+   },
+   "source": [
+    "### Basics of Python"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "id": "xG7a0mHcYKny"
+   },
+   "source": [
+    "Python is a high-level, dynamically typed multiparadigm programming language. Python code is often said to be almost like pseudocode, since it allows you to express very powerful ideas in very few lines of code while being very readable. As an example, here is an implementation of the classic quicksort algorithm in Python:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 89,
+   "metadata": {
+    "id": "I_7tMQXMYKnz"
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "[1, 1, 2, 3, 6, 8, 10]\n"
+     ]
+    }
+   ],
+   "source": [
+    "def quicksort(arr):\n",
+    "    if len(arr) <= 1:\n",
+    "        return arr\n",
+    "    pivot = arr[len(arr) // 2]\n",
+    "    left = [x for x in arr if x < pivot]\n",
+    "    middle = [x for x in arr if x == pivot]\n",
+    "    right = [x for x in arr if x > pivot]\n",
+    "    return quicksort(left) + middle + quicksort(right)\n",
+    "\n",
+    "print(quicksort([3,6,8,10,1,2,1]))"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "id": "a0sUOpw2YKn2"
+   },
+   "source": [
+    "### Python versions & shell commands"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "id": "DV5DWMbiYKn2"
+   },
+   "source": [
+    "There are currently two different supported versions of Python, 2 and 3. Somewhat confusingly, Python 3.0 introduced many backward-incompatible changes to the language, so code written for 2.7 may not work under 3.8 and vice versa. If your machine has an older version of Python 3 (say, 3.7 or 3.6), that's fine, you should be able to run all lines in this exercise. But, you can simply do the upgrade to 3.8 via `conda`) on the command line.  \n",
+    "\n",
+    "You can check your Python version at the command line by running `python --version`. Alternatively, you can also run shell commands directly from here..."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 90,
+   "metadata": {
+    "id": "4xKG91RWYKn3"
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Python 3.9.13\n"
+     ]
+    }
+   ],
+   "source": [
+    "!python --version"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 91,
+   "metadata": {
+    "id": "csnmzjvDYKn6"
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      " Volume in drive C has no label.\n",
+      " Volume Serial Number is B059-835A\n",
+      "\n",
+      " Directory of C:\\Users\\bekak\\Downloads\n",
+      "\n",
+      "11/17/2023  01:23 AM    <DIR>          .\n",
+      "11/15/2023  09:09 PM    <DIR>          ..\n",
+      "05/18/2023  12:29 AM           315,927 #include iostream (1).pdf\n",
+      "05/16/2023  11:40 PM           231,014 #include iostream.pdf\n",
+      "09/20/2023  10:01 PM         1,769,521 (Audio) document_5789913637845995246.m4a\n",
+      "11/05/2023  06:54 PM         2,064,433 (Audio) MVI_7572.m4a\n",
+      "06/02/2023  01:38 AM    <DIR>          .idea\n",
+      "11/17/2023  12:52 AM    <DIR>          .ipynb_checkpoints\n",
+      "09/20/2023  10:26 PM            75,506 0ebff65e-fc6a-4d0d-9030-d8a9fbac2e8e.jpeg\n",
+      "04/19/2023  11:02 PM         1,013,445 12+Rules+to+Learn+to+Code+[2nd+Edition]+2022.pdf\n",
+      "09/02/2023  06:02 PM           368,788 1451252.webp\n",
+      "09/14/2023  09:55 PM       509,473,575 17.2-2016_S024_OrCAD_Lite_Capture_PSpice (1).zip\n",
+      "09/14/2023  09:38 PM       509,473,575 17.2-2016_S024_OrCAD_Lite_Capture_PSpice.zip\n",
+      "04/18/2023  11:58 PM           289,087 2.1+Heading+Element.zip\n",
+      "04/19/2023  12:15 AM         1,734,253 2.2+Paragraph+Element.zip\n",
+      "04/19/2023  12:28 AM         1,469,608 2.3+Void+Elements.zip\n",
+      "04/19/2023  12:43 AM           398,123 2.4+Movie+Ranking+Project.zip\n",
+      "04/19/2023  01:02 AM           235,436 3.0+List+Elements.zip\n",
+      "04/19/2023  06:03 PM            38,652 3.1+Nesting+and+Indentation.zip\n",
+      "04/19/2023  10:33 PM           233,701 3.2+Anchor+Elements.zip\n",
+      "04/23/2023  10:51 PM         2,303,406 3.3+Image+Elements.zip\n",
+      "04/23/2023  11:58 PM         1,562,658 3.4+Birthday+Invite+Project.zip\n",
+      "02/23/2023  03:24 PM            58,543 3.jpg\n",
+      "02/23/2023  03:24 PM            68,301 4.jpg\n",
+      "04/24/2023  12:48 AM             3,160 5.1+Adding+CSS.zip\n",
+      "04/24/2023  11:57 PM           141,393 5.3+CSS+Selectors.zip\n",
+      "04/25/2023  12:37 AM           894,657 5.4+Color+Vocab+Project.zip\n",
+      "04/30/2023  10:34 PM            18,783 6.0+CSS+Colors.zip\n",
+      "04/30/2023  10:45 PM           341,646 6.1+Font+Properties.zip\n",
+      "09/07/2023  11:16 PM           693,552 6548.pdf\n",
+      "04/21/2023  12:33 AM           681,674 ABDELKERIM ALI HASSAN.pdf\n",
+      "05/23/2023  10:05 PM           232,803 Abdlekerim Ali Hassan 14224007 LONU053 9_2023 Offer Letter.docx (1).pdf\n",
+      "05/23/2023  10:04 PM           232,803 Abdlekerim Ali Hassan 14224007 LONU053 9_2023 Offer Letter.docx.pdf\n",
+      "11/07/2023  06:40 PM         2,892,700 Activity_1.pdf\n",
+      "05/28/2023  04:10 PM    <DIR>          Adobe Animate 2022\n",
+      "05/28/2023  03:51 PM     3,408,701,934 Adobe_Photoshop_2023_v24.2.0.315.rar\n",
+      "07/10/2023  01:20 PM           271,164 Advance Programing C++.pdf\n",
+      "03/31/2023  12:16 AM           454,047 Airpaz_flight_itinerary_1019496838.pdf\n",
+      "09/12/2023  12:40 PM           148,751 ali-1.pdf\n",
+      "05/11/2023  09:49 PM                88 AmpRes.txt\n",
+      "02/23/2023  11:17 PM       651,399,256 Anaconda3-2022.10-Windows-x86_64.exe\n",
+      "03/15/2023  04:45 AM            42,426 AppBreweryCornellNotesTemplate.pdf\n",
+      "08/31/2023  04:21 AM           167,438 apple.jpeg\n",
+      "05/06/2023  08:02 AM           291,807 APznzaanauxVgZIOwcIOoyJDLRkqKSMVad5ciNOdb5Rj440zTP2k7au8Nj6-wMXZm5GLuUc778BMrdmKyI_JUpZFR8Wvlw7Qlp1yAaS1eEwmKiLK-gbRieRV28HDWzkOe3aNhu3kV7PPljvhJ0Kkf4NbGnxN2nPFk93IN8GrT0tD4IOZjvlu5cQo-ByS-th4tSV90Ddr-up6avjuDmwOc4.pdf\n",
+      "05/06/2023  08:03 AM           473,237 APznzaazpq3hG-FdA0rv1kVG8k7hWZtASOcnOjfWcZix8nGTIppabFjGOQii45UB-UDiWWh38kPVJiv33KCRf4qLz3L-T-cePyu_LQj9Ty34L1J8wuBIBne-3UvC6GJg_GNF08BDuYnzEILApOYDjpT7V2BWlL2rLFVDFBWNHUVtAeZlc4ABwZEQ9Nc7kpDyWDSnh9ZluiFjOea6H6zLuZ.pdf\n",
+      "05/06/2023  08:03 AM           479,869 APznzaZGG0DGDpSsZZRQ2R70F3U773YVAlu0FxeO3q4QJVTn3-4bdFhm8Px25wsjT1o_x1k19Hr0UBlHAlB0VvoF-Wfl4vrflAXloQP-kg84927sWOjJ6Tbxjhr8gfIpcDXpJIjRWrpx3UufdFyWyrj-N80NanlhNS8VuXa7MJbFlbMFOD_jwYjEy3flR_sW4xXu_sUiVr_W3JEBQ1NPE6.pdf\n",
+      "02/22/2023  08:15 PM         2,046,908 ArmouryCrateInstallTool.zip\n",
+      "10/02/2023  02:09 AM            41,498 ASSIGNMENT 1 202309.01.dot\n",
+      "10/02/2023  02:01 AM            33,343 ASSIGNMENT 1 202309.1.docx\n",
+      "10/02/2023  02:04 AM            27,854 ASSIGNMENT 1 202309.2.docx\n",
+      "10/02/2023  02:04 AM            27,837 ASSIGNMENT 1 202309.3.docx\n",
+      "10/02/2023  01:52 AM            23,054 ASSIGNMENT 1 202309.docx\n",
+      "10/02/2023  01:45 AM           153,475 ASSIGNMENT 1 202309.pdf\n",
+      "09/05/2023  01:00 AM         4,201,277 assignment 2023 (1).pdf\n",
+      "09/05/2023  07:15 PM         1,235,258 assignment 2023.1.pdf\n",
+      "09/05/2023  12:52 AM         4,201,277 assignment 2023.pdf\n",
+      "06/01/2023  12:34 AM           175,052 Assignment ERR 2236 (1).docx\n",
+      "06/01/2023  12:39 AM         1,177,719 Assignment ERR 2236 (1.0).pdf\n",
+      "06/04/2023  04:31 AM         1,183,672 Assignment ERR 2236 (1.1).pdf\n",
+      "05/31/2023  10:51 PM           136,522 Assignment ERR 2236 (2).docx\n",
+      "05/28/2023  07:21 PM            67,226 Assignment ERR 2236.docx\n",
+      "06/01/2023  12:54 AM         1,177,822 Assignment ERR 2236.pdf\n",
+      "06/04/2023  02:23 AM           305,691 Assignment11.pdf\n",
+      "06/08/2023  11:04 PM             5,598 AssignmentQ2.cpp\n",
+      "06/11/2023  01:14 PM             6,547 Assignment_Q2.cpp\n",
+      "08/28/2023  10:28 PM             2,279 Attendance_ERR2236 (1).pdf\n",
+      "08/28/2023  09:54 PM             2,279 Attendance_ERR2236.pdf\n",
+      "09/22/2023  10:07 PM            76,549 b18836_FOE info 2310 (1).xlsx\n",
+      "09/22/2023  08:46 PM            76,549 b18836_FOE info 2310.xlsx\n",
+      "10/21/2023  09:01 PM           789,455 b18901_2024 CoE_CCU International Internship Program-20231006.pdf\n",
+      "10/21/2023  09:02 PM           719,737 b18901_Poster_2024 CCU Internship Program.jpg\n",
+      "10/21/2023  08:58 PM         1,220,696 b18905_EDM_JobStreet Ambassador.png\n",
+      "10/21/2023  08:59 PM            25,237 b18909_FOL - Staff directory - 3 October 2023.xlsx\n",
+      "11/16/2023  11:01 AM            95,359 b18977_2230_ICAEW Results Published.pdf\n",
+      "03/20/2023  07:25 AM         2,053,601 Bachelor-of-Science-Hons.-Intelligent-Robotics (1).pdf\n",
+      "03/17/2023  06:57 AM         2,053,601 Bachelor-of-Science-Hons.-Intelligent-Robotics.pdf\n",
+      "06/04/2023  03:38 AM           260,711 BL11.pdf\n",
+      "08/31/2023  03:58 AM         8,675,055 blas-lapack-mkl-5.5.2-win32.zip\n",
+      "02/23/2023  02:28 AM         1,367,688 BraveBrowserSetup.exe\n",
+      "05/16/2023  11:14 PM         1,031,788 CERTIFICATE.pdf\n",
+      "05/21/2023  06:46 PM        28,203,952 ch2 (1).pptx\n",
+      "05/21/2023  06:46 PM        23,132,872 ch2.pptx\n",
+      "05/21/2023  06:45 PM         6,091,172 ch3.pptx\n",
+      "06/11/2023  08:16 PM         3,957,829 ch7.pptx\n",
+      "06/24/2023  12:06 AM           181,927 Chap 1 Solutions.pdf\n",
+      "06/24/2023  12:12 AM         1,635,840 Chapter1.pdf\n",
+      "04/19/2023  03:35 PM           456,622 Chapter1_9April2023.zip\n",
+      "02/26/2023  04:14 AM         1,427,176 ChromeSetup.exe\n",
+      "11/14/2023  12:03 PM            10,952 clinic1M.csv\n",
+      "11/14/2023  02:49 PM             1,939 clinic_list.csv\n",
+      "03/30/2023  01:53 AM       688,550,192 CLion-2023.1.exe\n",
+      "05/16/2023  11:25 PM       152,419,674 codeblocks-20.03mingw-setup (1).exe\n",
+      "05/16/2023  02:08 AM       152,419,674 codeblocks-20.03mingw-setup.exe\n",
+      "05/16/2023  02:01 AM        16,299,290 codecompletion.chm\n",
+      "10/21/2023  01:36 AM       345,670,018 com.glu.flcn_new.apk\n",
+      "08/31/2023  03:58 AM         6,464,092 commons-mkl-5.5.2-win32.zip\n",
+      "02/27/2023  10:47 PM            37,084 CV ABDELKERIM ALI HASSAN #1 (1).pdf\n",
+      "02/27/2023  10:46 PM            44,215 CV ABDELKERIM ALI HASSAN #1.pdf\n",
+      "09/23/2023  11:59 PM     2,154,123,950 DaVinci_Resolve_18.6_Windows.zip\n",
+      "09/07/2023  09:53 PM           421,529 DELTA-Group-T2230-Sem-3-2022-2023.pdf\n",
+      "09/07/2023  09:53 PM           456,797 DELTA-Lab-Schedule-T2230-Sem-3-2022-2023.pdf\n",
+      "04/25/2023  12:54 AM        96,280,344 DiscordSetup.exe\n",
+      "10/02/2023  02:19 AM            25,152 Document4.docx\n",
+      "09/20/2023  08:17 PM        41,063,097 document_5789913637845995246.mp4\n",
+      "09/20/2023  09:00 PM           180,765 document_5789913637845995250.mp4\n",
+      "09/20/2023  09:08 PM         2,948,244 document_5789913637845995254.mp4\n",
+      "09/28/2023  09:18 PM        14,076,096 document_5814451258454446229.mp4\n",
+      "09/28/2023  09:19 PM        24,224,261 document_5814451258454446231.mp4\n",
+      "06/16/2023  03:25 PM           541,443 eandepandt_6th_ed_chap_25_sols_to_exerc_2016.docx\n",
+      "06/15/2023  12:01 AM           230,929 Electric_machine and Power system\n",
+      "06/14/2023  10:07 PM           349,669 Electronic_2j.pdf\n",
+      "05/21/2023  10:06 PM        17,828,786 EMT1026 PD Tut (1).pdf\n",
+      "05/20/2023  06:00 PM           521,489 EMT1026 PD Tut.pdf\n",
+      "03/02/2023  08:35 PM         2,448,826 ERA2036 Assignment Presentation.pdf\n",
+      "06/11/2023  02:12 PM           438,285 ERC2036_Assignment_project.1.pdf\n",
+      "06/11/2023  01:30 PM           433,168 ERC2036_Assignment_project.pdf\n",
+      "06/21/2023  09:50 PM           715,095 ERL2036 Course Information.pdf\n",
+      "06/23/2023  09:00 PM         2,605,816 ERL2036 Report Assignment (3).pdf\n",
+      "06/21/2023  09:51 PM           157,974 ERL2036 Teaching Plan.pdf\n",
+      "06/15/2023  12:03 AM            53,001 ERL2036_Assignment.docx\n",
+      "06/15/2023  12:02 AM           230,929 ERL2036_Assignment.pdf\n",
+      "08/28/2023  10:20 PM            90,879 f4f136b3-cace-4349-8911-9e6f94374bf7.png\n",
+      "09/20/2023  07:14 PM         1,942,512 filmora-idco_setup_full1901.exe\n",
+      "11/15/2023  03:46 PM            83,418 Financial Sample (1).xlsx\n",
+      "11/15/2023  03:46 PM            83,418 Financial Sample.xlsx\n",
+      "03/27/2023  11:52 PM            42,310 Form Exceed CH 2220 (1).docx\n",
+      "03/27/2023  11:45 PM            41,176 Form Exceed CH 2220.docx\n",
+      "03/27/2023  11:41 PM           117,502 Form Exceed CH 2220.docx.pdf\n",
+      "03/27/2023  11:36 PM           115,911 Form Exceed CH 2220.pdf\n",
+      "05/28/2023  06:36 AM         2,051,687 Free-Magazine-PPT-Template-102-px.zip\n",
+      "02/23/2023  05:34 AM        11,760,696 Fusion 360 Client Downloader.exe\n",
+      "09/07/2023  09:45 PM           580,409 GAMA-GROUP-T2230-Sem-3-2022-2023.pdf\n",
+      "09/07/2023  09:45 PM           463,136 GAMA-Lab-Schedule-T2230-Sem-3-2022-2023.pdf\n",
+      "09/12/2023  12:41 PM           662,264 GARDEN PLAZA OT-25-03.pdf\n",
+      "02/23/2023  06:27 AM       131,458,368 GeForce_Experience_v3.27.0.112 (1).exe\n",
+      "02/23/2023  06:26 AM       131,458,368 GeForce_Experience_v3.27.0.112.exe\n",
+      "09/12/2023  12:40 PM           148,460 gghhg.pdf\n",
+      "09/02/2023  06:03 PM           368,788 GTYR.webp\n",
+      "10/14/2023  10:37 AM            53,244 HAC20303 VAC20103 TEST 1 (QS)_SEP'23.1.docx\n",
+      "10/14/2023  10:40 AM           118,232 HAC20303 VAC20103 TEST 1 (QS)_SEP'23.1.pdf\n",
+      "10/14/2023  10:49 AM           117,867 HAC20303 VAC20103 TEST 1 (QS)_SEP'23.2.pdf\n",
+      "10/14/2023  10:52 AM           117,304 HAC20303 VAC20103 TEST 1 (QS)_SEP'23.3.pdf\n",
+      "10/14/2023  10:34 AM            53,182 HAC20303 VAC20103 TEST 1 (QS)_SEP'23.docx\n",
+      "10/14/2023  10:35 AM           118,536 HAC20303 VAC20103 TEST 1 (QS)_SEP'23.pdf\n",
+      "06/02/2023  01:47 AM             2,352 hangman_functions.cpp\n",
+      "06/02/2023  01:47 AM               237 hangman_functions.h\n",
+      "06/08/2023  10:26 PM             1,656 Hangman_game.cpp\n",
+      "11/14/2023  12:03 PM               451 hello.txt\n",
+      "11/14/2023  02:49 PM                69 hello2.txt\n",
+      "07/10/2023  01:48 PM            21,729 Hospitalization Guarantee Letter #5042602.pdf\n",
+      "02/27/2023  09:38 PM           213,231 how_to_write_a_cv_lc_uk_2.jpg\n",
+      "03/01/2023  09:36 AM    <DIR>          html-and-css-crash-course-master\n",
+      "03/01/2023  12:29 AM         1,353,773 html-and-css-crash-course-master (1).zip\n",
+      "03/01/2023  09:38 AM         1,353,773 html-and-css-crash-course-master (2).zip\n",
+      "03/01/2023  12:27 AM         1,353,773 html-and-css-crash-course-master.zip\n",
+      "09/20/2023  08:01 PM         2,160,904 icarefone.exe\n",
+      "06/04/2023  11:38 PM            34,644 IIUM - CSCI3300_Assignment 2_NEW (1).pdf\n",
+      "06/11/2023  08:22 PM         1,077,760 IIUM - CSCI3300_Assignment 2_NEW.doc\n",
+      "06/04/2023  11:34 PM         1,196,548 IIUM - CSCI3300_Assignment 2_NEW.pdf\n",
+      "05/24/2023  01:50 PM           339,157 image (1).png\n",
+      "05/24/2023  01:50 PM            40,693 image.png\n",
+      "08/07/2023  10:01 PM           561,215 IMG-1714.jpg\n",
+      "08/07/2023  10:01 PM           832,293 IMG-1716.jpg\n",
+      "08/07/2023  10:01 PM         1,220,755 IMG-1718.jpg\n",
+      "08/07/2023  10:09 PM         1,122,930 IMG-1720 (1).jpg\n",
+      "08/07/2023  10:01 PM         1,122,930 IMG-1720.jpg\n",
+      "05/21/2023  06:19 PM           993,257 IMG_4817.png\n",
+      "10/24/2023  05:48 PM         6,530,754 IMG_7420.JPG\n",
+      "10/23/2023  10:02 PM         6,827,703 IMG_7504.JPG\n",
+      "08/19/2023  02:43 PM            22,164 invite.ics\n",
+      "11/13/2023  10:24 PM             3,738 iris.zip\n",
+      "11/17/2023  01:23 AM            64,066 Lab01 (1).ipynb\n",
+      "11/17/2023  12:45 AM       175,277,233 Lab01.ipynb\n",
+      "11/14/2023  02:49 PM           220,255 lab02.ipynb\n",
+      "06/04/2023  04:51 AM           459,372 Labt_ERR_2236[1].pdf\n",
+      "05/12/2023  12:47 AM         3,793,136 LDPlayer9_ens_com.nalda.desktopdday_3040_ld.exe\n",
+      "05/21/2023  12:31 AM            83,957 lecture 14 ws sols.pdf\n",
+      "05/16/2023  01:35 AM             4,956 Lecture code for module 9_plain_text.txt\n",
+      "09/17/2023  01:39 PM            58,389 LSS1_cover page.docx\n",
+      "09/17/2023  01:42 PM            72,984 LSS1_cover page.pdf\n",
+      "05/16/2023  01:36 AM               860 m3_ex2_code.cpp\n",
+      "06/02/2023  02:33 AM             3,449 main (1).cpp\n",
+      "06/08/2023  11:47 PM             6,547 main (2).cpp\n",
+      "06/02/2023  01:38 AM               914 main.cpp\n",
+      "05/28/2023  06:55 AM           113,683 maxresdefault.jpg\n",
+      "06/08/2023  08:00 PM                82 maze.txt\n",
+      "05/22/2023  12:31 AM           725,122 MCP2.Lab sheat.pdf\n",
+      "08/18/2023  02:01 PM         2,165,744 Mech-Mind Training Schedule in August.png\n",
+      "05/28/2023  09:17 PM        10,080,448 mediacreationtool.exe\n",
+      "06/11/2023  06:02 PM        19,463,448 MediaCreationTool22H2.exe\n",
+      "04/28/2023  01:01 AM           828,913 METR4202-RoboticsTutorial4Week4_Solutions (1).pdf\n",
+      "06/18/2023  04:33 PM           828,913 METR4202-RoboticsTutorial4Week4_Solutions (2).pdf\n",
+      "04/22/2023  09:56 PM           828,913 METR4202-RoboticsTutorial4Week4_Solutions.pdf\n",
+      "08/18/2023  05:09 PM           302,571 MMTE-201 Mech-Mind 3D Vision Techniques - Beginner (1).pdf\n",
+      "08/18/2023  02:01 PM           302,571 MMTE-201 Mech-Mind 3D Vision Techniques - Beginner.pdf\n",
+      "06/01/2023  12:21 AM            38,209 MMU New logo.png\n",
+      "08/28/2023  09:53 PM            31,965 MMU_Admission_Offer_Letter copy 2.pdf\n",
+      "09/20/2023  07:50 PM         1,780,224 mobiletrans_setup_full5793.exe\n",
+      "09/20/2023  08:03 PM    <DIR>          New folder\n",
+      "05/28/2023  06:33 AM            38,884 nong-vang-577609-unsplash-1024x683.webp\n",
+      "10/26/2023  11:49 PM           116,477 N_RSLT_SLIP_P_COMP.html\n",
+      "10/26/2023  11:49 PM    <DIR>          N_RSLT_SLIP_P_COMP_files\n",
+      "02/23/2023  01:59 AM            19,787 OIP.jfif\n",
+      "11/15/2023  02:18 PM         4,302,879 OneDrive_2023-11-15.zip\n",
+      "05/28/2023  06:09 AM         3,496,248 OperaGXSetup.exe\n",
+      "06/25/2023  01:35 PM        11,936,990 OS Group Project Sem 2 2022-2023 (1).docx\n",
+      "06/25/2023  01:19 PM        11,936,990 OS Group Project Sem 2 2022-2023.docx\n",
+      "06/25/2023  10:51 PM         2,061,917 OS Group report (1) (1).docx\n",
+      "06/25/2023  10:51 PM         2,061,917 OS Group report (1).docx\n",
+      "06/25/2023  08:17 PM         1,933,898 OS Group report.docx\n",
+      "06/16/2023  01:44 PM             7,866 Pacman_game.cpp\n",
+      "09/28/2023  09:50 PM        63,137,603 Peaceful video intro - Made with Clipchamp.mp4\n",
+      "05/28/2023  06:57 AM           113,912 photo-1627819840693-3e68acd7dc50.jpg\n",
+      "09/20/2023  08:20 PM            19,184 photo_5789913638302237315_x.jpg\n",
+      "09/20/2023  08:20 PM            73,257 photo_5789913638302237316_y.jpg\n",
+      "09/20/2023  09:06 PM           188,215 photo_5789913638302237330_y.jpg\n",
+      "09/20/2023  10:10 PM           147,931 photo_5789913638302237373_y (1).jpg\n",
+      "09/20/2023  10:10 PM           147,931 photo_5789913638302237373_y (2).jpg\n",
+      "09/20/2023  10:11 PM           147,931 photo_5789913638302237373_y (3).jpg\n",
+      "09/20/2023  10:10 PM           147,931 photo_5789913638302237373_y.jpg\n",
+      "09/20/2023  11:03 PM         5,285,131 Positive Fuse - French Fuse.mp3\n",
+      "09/16/2023  09:51 PM           812,432 premium_photo-1663040543387-cb7c78c4f012.webp\n",
+      "10/29/2023  03:49 PM            28,688 Proposal Form-2023.docx\n",
+      "06/04/2023  05:27 PM               794 Q1_starter.cpp\n",
+      "05/11/2023  09:33 PM             1,434 q1_template.cpp\n",
+      "04/20/2023  09:53 PM               638 q2.cpp\n",
+      "06/04/2023  05:24 PM             1,126 q2_simple_sol.cpp\n",
+      "06/04/2023  05:22 PM             2,781 q2_solution.cpp\n",
+      "06/04/2023  05:27 PM               627 Q2_starter.cpp\n",
+      "04/20/2023  09:58 PM               848 q3.cpp\n",
+      "05/16/2023  01:22 AM             1,830 q3_template.cpp\n",
+      "04/20/2023  10:02 PM             1,166 q4.cpp\n",
+      "04/20/2023  10:07 PM             1,514 q5.cpp\n",
+      "09/24/2023  04:31 PM        27,234,219 Recording Mar 10 2022 10 20 50 PM.mp3\n",
+      "09/24/2023  04:31 PM        32,748,773 Recording Mar 10 2022 10 42 00 PM (1).mp3\n",
+      "09/24/2023  03:52 PM        32,748,773 Recording Mar 10 2022 10 42 00 PM.mp3\n",
+      "09/07/2023  02:38 PM           132,977 Request For Information Form.1.pdf\n",
+      "09/07/2023  04:01 PM           134,525 Request For Information Form.2.pdf\n",
+      "09/07/2023  03:39 PM           133,393 Request For Information Form.3.pdf\n",
+      "09/07/2023  04:01 PM            19,192 Request For Information Form.docx\n",
+      "09/07/2023  02:25 PM            56,389 Request For Information Form.pdf\n",
+      "02/27/2023  09:35 PM           141,742 Resume Builder ú Resume.io.html\n",
+      "02/27/2023  09:35 PM    <DIR>          Resume Builder ú Resume.io_files\n",
+      "07/10/2023  11:48 AM         2,056,570 Revision questions to assist study for test and exam.html\n",
+      "07/10/2023  11:48 AM    <DIR>          Revision questions to assist study for test and exam_files\n",
+      "06/08/2023  01:09 AM             3,145 Revision_code_from_ref_card (1).zip\n",
+      "07/10/2023  11:49 AM             3,145 Revision_code_from_ref_card (2).zip\n",
+      "06/08/2023  01:08 AM             3,145 Revision_code_from_ref_card.zip\n",
+      "06/02/2023  04:21 AM            13,564 RMC2.docx\n",
+      "06/02/2023  12:17 AM           459,390 RMC2_ERR_2236.pdf\n",
+      "06/21/2023  09:19 PM           230,929 safi.pdf\n",
+      "05/18/2023  12:22 AM                28 salary.txt\n",
+      "06/08/2023  11:42 PM           479,869 Sample expected output for question 2.pdf\n",
+      "08/30/2023  01:34 AM       179,148,800 scilab-2023.1.0.bin.x64 (1).exe\n",
+      "08/30/2023  01:53 AM       179,148,800 scilab-2023.1.0.bin.x64.exe\n",
+      "08/31/2023  03:57 AM       134,667,168 scilab-5.5.2.exe\n",
+      "08/31/2023  04:13 AM       176,259,488 scilab-6.1.1_x64.exe\n",
+      "09/05/2023  12:23 AM           383,504 screencapture-db-suschegg-view-2023-08-30-20_34_31.pdf\n",
+      "09/04/2023  08:15 PM           809,422 screencapture-db-suschegg-view-2023-08-30-20_34_37 (1).pdf\n",
+      "09/05/2023  12:23 AM           809,422 screencapture-db-suschegg-view-2023-08-30-20_34_37 (2).pdf\n",
+      "09/04/2023  08:11 PM           809,422 screencapture-db-suschegg-view-2023-08-30-20_34_37.pdf\n",
+      "09/20/2023  09:59 PM           205,196 Screenshot 2023-09-20 215917.png\n",
+      "05/18/2023  12:22 AM                64 staff (1).txt\n",
+      "05/11/2023  09:49 PM                64 staff.txt\n",
+      "02/23/2023  02:06 AM         2,296,488 SteamSetup.exe\n",
+      "03/27/2023  11:45 PM            37,311 Subject Registration_Manual Form_2220.docx\n",
+      "07/10/2023  11:52 AM             1,289 template_code.cpp\n",
+      "05/16/2023  11:00 PM           906,008 Test Report Form.pdf\n",
+      "07/10/2023  11:52 AM             2,553 test01_sol.cpp\n",
+      "07/10/2023  11:51 AM               578 test_code.cpp\n",
+      "03/20/2023  09:35 PM           160,793 TO WHOM MAY IT CONCERN - ISSAK(1).pdf\n",
+      "03/20/2023  09:31 PM           246,055 TO WHOM MAY IT CONCERN - ISSAK.docx\n",
+      "03/20/2023  09:30 PM           338,372 TO WHOM MAY IT CONCERN - ISSAK.pdf\n",
+      "04/20/2023  10:43 PM             1,483 Tou3_Q5.cpp\n",
+      "08/18/2023  05:15 PM           816,407 Tout1 (1).pdf\n",
+      "08/18/2023  05:15 PM           816,407 Tout1.pdf\n",
+      "04/20/2023  10:44 PM             1,166 Tout3_Q4.cpp\n",
+      "04/29/2023  10:48 PM             1,961 Tout4_Sec_A(1).cpp\n",
+      "04/29/2023  11:16 PM             1,555 Tout4_Sec_A(2).cpp\n",
+      "04/29/2023  11:41 PM             1,333 Tout4_Sec_B.cpp\n",
+      "04/29/2023  11:55 PM               898 Tout4_Sec_C.cpp\n",
+      "05/11/2023  10:21 PM             1,686 Tout6.cpp\n",
+      "05/11/2023  09:55 PM             2,070 Tout6_Q1.cpp\n",
+      "06/04/2023  06:08 PM             1,669 Tout8_Q1.cpp.txt\n",
+      "06/04/2023  06:43 PM             1,810 Tout8_Q1_full_ans.cpp\n",
+      "06/05/2023  07:55 PM             2,779 Tout8_Q2.cpp\n",
+      "06/04/2023  06:08 PM               939 Tout9_Q1(A).cpp.txt\n",
+      "06/05/2023  07:54 PM             1,499 Tout9_Q1_A.cpp\n",
+      "06/05/2023  08:06 PM             1,184 Tout9_Q1_B.cpp\n",
+      "08/18/2023  01:52 PM         4,346,513 Toutrial 1.pdf\n",
+      "09/20/2023  08:16 PM        41,597,616 tsetup-x64.4.9.9.exe\n",
+      "04/30/2023  12:18 AM             2,336 Tuot5_Q1.cpp\n",
+      "04/30/2023  12:22 AM               751 Tuto5_EXR_1.cpp\n",
+      "04/30/2023  06:10 PM               829 Tuto5_EXR_2.cpp\n",
+      "04/30/2023  05:56 PM             1,318 Tuto5_Q2.cpp\n",
+      "06/11/2023  08:24 PM        49,037,312 Unconfirmed 429140.crdownload\n",
+      "06/16/2023  03:39 PM           193,226 unnamed (1).jpg\n",
+      "06/16/2023  03:39 PM           213,398 unnamed (2).jpg\n",
+      "06/16/2023  04:23 PM            53,690 unnamed (3).jpg\n",
+      "06/16/2023  04:23 PM            93,266 unnamed (4).jpg\n",
+      "06/16/2023  04:23 PM            87,550 unnamed (5).jpg\n",
+      "06/16/2023  04:24 PM            83,489 unnamed (6).jpg\n",
+      "06/16/2023  04:36 PM            53,690 unnamed (7).jpg\n",
+      "06/16/2023  04:46 PM            98,762 unnamed (8).jpg\n",
+      "06/16/2023  03:39 PM           312,909 unnamed.jpg\n",
+      "06/16/2023  03:10 PM            19,510 unnamed.png\n",
+      "08/26/2023  12:59 AM         2,746,198 Untitled 1.pdf\n",
+      "09/16/2023  09:34 PM           122,194 Untitled design.png\n",
+      "06/25/2023  08:15 PM         1,933,901 Untitled document.docx\n",
+      "09/28/2023  09:59 PM       168,420,249 Untitled video - Made with Clipchamp (1).mp4\n",
+      "09/28/2023  10:21 PM       168,420,371 Untitled video - Made with Clipchamp (2).mp4\n",
+      "10/23/2023  09:56 PM       808,056,971 Untitled video - Made with Clipchamp (3).mp4\n",
+      "09/20/2023  10:22 PM       492,874,078 Untitled video - Made with Clipchamp.mp4\n",
+      "09/20/2023  09:17 PM         1,786,626 Untitled.wfp\n",
+      "05/06/2023  08:02 AM             2,686 ver1 (1).cpp\n",
+      "06/02/2023  12:36 AM             2,686 ver1 (2).cpp\n",
+      "04/24/2023  08:24 PM             2,686 ver1.cpp\n",
+      "05/06/2023  08:02 AM             4,752 ver2.cpp\n",
+      "11/12/2023  02:16 AM       855,987,393 Vid‚o sans titre - R‚alis‚e avec Clipchamp.mp4\n",
+      "06/04/2023  09:26 PM       605,263,400 VMware-player-full-17.0.0-20800274.exe\n",
+      "02/26/2023  04:16 AM        93,154,472 VSCodeUserSetup-x64-1.75.1 (1).exe\n",
+      "02/26/2023  04:16 AM        93,154,472 VSCodeUserSetup-x64-1.75.1.exe\n",
+      "03/15/2023  04:09 AM         2,074,258 Web Dev Syllabus.pdf\n",
+      "03/15/2023  04:09 AM           291,702 Web+Dev+Resources.pdf\n",
+      "03/15/2023  04:08 AM         2,093,655 Web+Dev+Syllabus.pdf\n",
+      "08/21/2023  10:23 AM       856,237,886 wetransfer_mech-mind-online-course_2023-08-21_0218.zip\n",
+      "09/10/2023  12:25 PM        12,846,098 WhatsApp Audio 2023-09-10 at 03.02.57.dat.unknown\n",
+      "02/23/2023  03:24 PM            51,577 WhatsApp Image 2023-02-23 at 15.24.17.jpg\n",
+      "02/23/2023  03:24 PM            80,923 WhatsApp Image 2023-02-23 at 15.24.18.jpg\n",
+      "02/27/2023  09:08 PM            25,149 WhatsApp Image 2023-02-27 at 19.59.30.jpg\n",
+      "03/08/2023  02:20 AM            90,980 WhatsApp Image 2023-03-08 at 02.20.16.jpg\n",
+      "03/08/2023  02:20 AM            64,382 WhatsApp Image 2023-03-08 at 02.20.30.jpg\n",
+      "06/25/2023  02:37 PM            75,662 WhatsApp Image 2023-06-25 at 10.44.57 AM.jpeg\n",
+      "06/25/2023  01:10 PM           148,523 WhatsApp Image 2023-06-25 at 10.58.24 AM.jpeg\n",
+      "06/25/2023  01:03 PM           162,434 WhatsApp Image 2023-06-25 at 11.23.08 AM.jpeg\n",
+      "06/25/2023  12:56 PM           135,377 WhatsApp Image 2023-06-25 at 11.30.36 AM.jpeg\n",
+      "06/25/2023  07:34 PM           121,252 WhatsApp Image 2023-06-25 at 7.27.42 PM.jpeg\n",
+      "06/25/2023  07:34 PM            44,791 WhatsApp Image 2023-06-25 at 7.28.04 PM.jpeg\n",
+      "06/25/2023  07:48 PM            21,888 WhatsApp Image 2023-06-25 at 7.48.07 PM.jpeg\n",
+      "06/25/2023  07:52 PM            54,008 WhatsApp Image 2023-06-25 at 7.51.38 PM.jpeg\n",
+      "06/25/2023  08:04 PM            49,551 WhatsApp Image 2023-06-25 at 8.02.59 PM.jpeg\n",
+      "07/10/2023  02:04 PM            55,218 WhatsApp Image 2023-07-10 at 14.01.50 (1).jpg\n",
+      "07/10/2023  02:03 PM            30,711 WhatsApp Image 2023-07-10 at 14.01.50.1 (1).jpg\n",
+      "07/10/2023  02:01 PM            30,711 WhatsApp Image 2023-07-10 at 14.01.50.1.jpg\n",
+      "07/10/2023  02:01 PM            55,218 WhatsApp Image 2023-07-10 at 14.01.50.jpg\n",
+      "09/07/2023  03:39 PM            53,616 WhatsApp Image 2023-09-07 at 15.39.43.1.jpg\n",
+      "09/07/2023  03:39 PM            58,287 WhatsApp Image 2023-09-07 at 15.39.43.2.jpg\n",
+      "09/07/2023  03:39 PM            57,789 WhatsApp Image 2023-09-07 at 15.39.43.3.jpg\n",
+      "09/07/2023  03:39 PM            17,776 WhatsApp Image 2023-09-07 at 15.39.43.4.jpg\n",
+      "09/07/2023  03:39 PM            53,975 WhatsApp Image 2023-09-07 at 15.39.43.5.jpg\n",
+      "09/07/2023  03:39 PM            51,605 WhatsApp Image 2023-09-07 at 15.39.43.6.jpg\n",
+      "09/07/2023  03:39 PM            10,943 WhatsApp Image 2023-09-07 at 15.39.43.7.jpg\n",
+      "09/07/2023  03:39 PM            17,242 WhatsApp Image 2023-09-07 at 15.39.43.8.jpg\n",
+      "09/07/2023  03:39 PM            17,482 WhatsApp Image 2023-09-07 at 15.39.43.9.jpg\n",
+      "09/07/2023  03:39 PM            54,087 WhatsApp Image 2023-09-07 at 15.39.43.jpg\n",
+      "09/07/2023  03:51 PM           136,367 WhatsApp Image 2023-09-07 at 15.51.00.1.jpg\n",
+      "09/07/2023  03:51 PM            98,566 WhatsApp Image 2023-09-07 at 15.51.00.2.jpg\n",
+      "09/07/2023  03:51 PM           126,325 WhatsApp Image 2023-09-07 at 15.51.00.3.jpg\n",
+      "09/07/2023  03:51 PM           102,266 WhatsApp Image 2023-09-07 at 15.51.00.jpg\n",
+      "09/07/2023  03:55 PM            95,015 WhatsApp Image 2023-09-07 at 15.52.26.jpg\n",
+      "09/07/2023  03:59 PM           144,132 WhatsApp Image 2023-09-07 at 15.59.22.jpg\n",
+      "09/12/2023  12:40 PM            81,287 WhatsApp Image 2023-09-12 at 12.40.38.1.jpg\n",
+      "09/12/2023  12:40 PM           301,355 WhatsApp Image 2023-09-12 at 12.40.38.2.jpg\n",
+      "09/12/2023  12:40 PM            41,153 WhatsApp Image 2023-09-12 at 12.40.38.jpg\n",
+      "09/12/2023  12:40 PM            27,277 WhatsApp Image 2023-09-12 at 12.40.39.3.jpg\n",
+      "09/12/2023  12:42 PM            44,162 WhatsApp Image 2023-09-12 at 12.42.41.4.jpg\n",
+      "09/12/2023  12:42 PM            44,162 WhatsApp Image 2023-09-12 at 12.42.41.jpg\n",
+      "09/12/2023  01:11 PM            43,082 WhatsApp Image 2023-09-12 at 13.11.28.jpg\n",
+      "09/16/2023  09:36 PM           209,100 WhatsApp Image 2023-09-16 at 21.36.39.jpg\n",
+      "09/21/2023  11:28 PM           128,579 WhatsApp Image 2023-09-21 at 23.28.46.jpg\n",
+      "09/21/2023  11:31 PM           168,399 WhatsApp Image 2023-09-21 at 23.31.25.jpg\n",
+      "09/21/2023  11:45 PM            91,939 WhatsApp Image 2023-09-21 at 23.45.54.jpg\n",
+      "10/05/2023  11:43 AM            49,321 WhatsApp Image 2023-10-04 at 20.36.53.jpg\n",
+      "10/05/2023  01:11 PM            26,355 WhatsApp Image 2023-10-05 at 13.11.34.jpg\n",
+      "10/05/2023  01:12 PM            29,484 WhatsApp Image 2023-10-05 at 13.12.54.jpg\n",
+      "10/05/2023  01:14 PM            12,918 WhatsApp Image 2023-10-05 at 13.14.01.jpg\n",
+      "10/05/2023  01:16 PM            27,346 WhatsApp Image 2023-10-05 at 13.16.02.jpg\n",
+      "10/05/2023  01:16 PM            46,741 WhatsApp Image 2023-10-05 at 13.16.27.jpg\n",
+      "10/05/2023  01:22 PM            70,294 WhatsApp Image 2023-10-05 at 13.22.07.jpg\n",
+      "10/05/2023  01:24 PM            79,083 WhatsApp Image 2023-10-05 at 13.24.34.jpg\n",
+      "10/05/2023  01:26 PM            82,464 WhatsApp Image 2023-10-05 at 13.26.01.jpg\n",
+      "10/23/2023  10:04 PM           166,138 WhatsApp Image 2023-10-23 at 22.04.58_49f5aab7.jpg\n",
+      "11/12/2023  02:19 AM           158,457 WhatsApp Image 2023-11-12 at 02.19.36_1066c4cb.jpg\n",
+      "06/05/2023  08:25 PM         8,004,355 WhatsApp Video 2023-06-05 at 20.25.36.mp4\n",
+      "09/08/2023  09:09 PM         3,099,546 WhatsApp Video 2023-09-08 at 21.09.59.mp4\n",
+      "05/28/2023  05:55 PM         5,171,960 YAYA ALI HASSANE -  1928095.psd\n",
+      "05/28/2023  04:22 PM           161,855 YAYA ALI HASSANE 1928095.jpg\n",
+      "05/28/2023  09:00 PM            76,582 YAYA ALI HASSANE 1928095.pdf\n",
+      "05/28/2023  05:42 PM         8,129,374 YAYA ALI HASSANE 1928095.psd\n",
+      "05/28/2023  08:51 PM            17,359 YAYA ALI HASSANE ==1928095  f.jpg\n",
+      "05/28/2023  06:48 PM            66,341 YAYA ALI HASSANE ==1928095.jpg\n",
+      "05/28/2023  08:48 PM            69,924 YAYA ALI HASSANE ==1928095M.svgz\n",
+      "09/20/2023  10:56 PM         6,437,653 Yes and No at the Same Time - half.cool.mp3\n",
+      "05/28/2023  03:44 PM     2,172,073,852 _Getintopc.com_Adobe_Animate_22.0.5.191.rar\n",
+      "05/28/2023  08:53 PM         1,456,659 {key532355d0-b0f7-4f46-b588-3c9000a19c8f,graphicItems[{gamma{red1,green1,blue1,isEnabledfalse,pmvcNamepostermywall.core.model.vo.GammaEffectVO},pmvcNamepostermywall.core.model.vo.GraphicItemImageVO,uidead36dc1- (1).pdf\n",
+      "05/28/2023  07:24 AM         1,457,027 {key532355d0-b0f7-4f46-b588-3c9000a19c8f,graphicItems[{gamma{red1,green1,blue1,isEnabledfalse,pmvcNamepostermywall.core.model.vo.GammaEffectVO},pmvcNamepostermywall.core.model.vo.GraphicItemImageVO,uidead36dc1-78f5.pdf\n",
+      "             386 File(s) 16,806,632,677 bytes\n",
+      "              10 Dir(s)  162,977,775,616 bytes free\n"
+     ]
+    }
+   ],
+   "source": [
+    "!dir"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 92,
+   "metadata": {
+    "id": "yILL7rb1YKn8"
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Package                       Version\n",
+      "----------------------------- --------------------\n",
+      "alabaster                     0.7.12\n",
+      "anaconda-client               1.11.0\n",
+      "anaconda-navigator            2.3.1\n",
+      "anaconda-project              0.11.1\n",
+      "anyio                         3.5.0\n",
+      "appdirs                       1.4.4\n",
+      "argon2-cffi                   21.3.0\n",
+      "argon2-cffi-bindings          21.2.0\n",
+      "arrow                         1.2.2\n",
+      "astroid                       2.11.7\n",
+      "astropy                       5.1\n",
+      "atomicwrites                  1.4.0\n",
+      "attrs                         21.4.0\n",
+      "Automat                       20.2.0\n",
+      "autopep8                      1.6.0\n",
+      "Babel                         2.9.1\n",
+      "backcall                      0.2.0\n",
+      "backports.functools-lru-cache 1.6.4\n",
+      "backports.tempfile            1.0\n",
+      "backports.weakref             1.0.post1\n",
+      "bcrypt                        3.2.0\n",
+      "beautifulsoup4                4.11.1\n",
+      "binaryornot                   0.4.4\n",
+      "bitarray                      2.5.1\n",
+      "bkcharts                      0.2\n",
+      "black                         22.6.0\n",
+      "bleach                        4.1.0\n",
+      "bokeh                         2.4.3\n",
+      "boto3                         1.24.28\n",
+      "botocore                      1.27.28\n",
+      "Bottleneck                    1.3.5\n",
+      "brotlipy                      0.7.0\n",
+      "certifi                       2022.9.14\n",
+      "cffi                          1.15.1\n",
+      "chardet                       4.0.0\n",
+      "charset-normalizer            2.0.4\n",
+      "click                         8.0.4\n",
+      "cloudpickle                   2.0.0\n",
+      "clyent                        1.2.2\n",
+      "colorama                      0.4.5\n",
+      "colorcet                      3.0.0\n",
+      "comtypes                      1.1.10\n",
+      "conda                         22.9.0\n",
+      "conda-build                   3.22.0\n",
+      "conda-content-trust           0.1.3\n",
+      "conda-pack                    0.6.0\n",
+      "conda-package-handling        1.9.0\n",
+      "conda-repo-cli                1.0.20\n",
+      "conda-token                   0.4.0\n",
+      "conda-verify                  3.4.2\n",
+      "constantly                    15.1.0\n",
+      "cookiecutter                  1.7.3\n",
+      "cryptography                  37.0.1\n",
+      "cssselect                     1.1.0\n",
+      "cycler                        0.11.0\n",
+      "Cython                        0.29.32\n",
+      "cytoolz                       0.11.0\n",
+      "daal4py                       2021.6.0\n",
+      "dask                          2022.7.0\n",
+      "datashader                    0.14.1\n",
+      "datashape                     0.5.4\n",
+      "debugpy                       1.5.1\n",
+      "decorator                     5.1.1\n",
+      "defusedxml                    0.7.1\n",
+      "diff-match-patch              20200713\n",
+      "dill                          0.3.4\n",
+      "distributed                   2022.7.0\n",
+      "docutils                      0.18.1\n",
+      "entrypoints                   0.4\n",
+      "et-xmlfile                    1.1.0\n",
+      "fastjsonschema                2.16.2\n",
+      "filelock                      3.6.0\n",
+      "flake8                        4.0.1\n",
+      "Flask                         1.1.2\n",
+      "fonttools                     4.25.0\n",
+      "fsspec                        2022.7.1\n",
+      "future                        0.18.2\n",
+      "gensim                        4.1.2\n",
+      "glob2                         0.7\n",
+      "greenlet                      1.1.1\n",
+      "h5py                          3.7.0\n",
+      "HeapDict                      1.0.1\n",
+      "holoviews                     1.15.0\n",
+      "hvplot                        0.8.0\n",
+      "hyperlink                     21.0.0\n",
+      "idna                          3.3\n",
+      "imagecodecs                   2021.8.26\n",
+      "imageio                       2.19.3\n",
+      "imagesize                     1.4.1\n",
+      "importlib-metadata            4.11.3\n",
+      "incremental                   21.3.0\n",
+      "inflection                    0.5.1\n",
+      "iniconfig                     1.1.1\n",
+      "intake                        0.6.5\n",
+      "intervaltree                  3.1.0\n",
+      "ipykernel                     6.15.2\n",
+      "ipython                       7.31.1\n",
+      "ipython-genutils              0.2.0\n",
+      "ipywidgets                    7.6.5\n",
+      "isort                         5.9.3\n",
+      "itemadapter                   0.3.0\n",
+      "itemloaders                   1.0.4\n",
+      "itsdangerous                  2.0.1\n",
+      "jdcal                         1.4.1\n",
+      "jedi                          0.18.1\n",
+      "jellyfish                     0.9.0\n",
+      "Jinja2                        2.11.3\n",
+      "jinja2-time                   0.2.0\n",
+      "jmespath                      0.10.0\n",
+      "joblib                        1.1.0\n",
+      "json5                         0.9.6\n",
+      "jsonschema                    4.16.0\n",
+      "jupyter                       1.0.0\n",
+      "jupyter_client                7.3.4\n",
+      "jupyter-console               6.4.3\n",
+      "jupyter_core                  4.11.1\n",
+      "jupyter-server                1.18.1\n",
+      "jupyterlab                    3.4.4\n",
+      "jupyterlab-pygments           0.1.2\n",
+      "jupyterlab-server             2.10.3\n",
+      "jupyterlab-widgets            1.0.0\n",
+      "keyring                       23.4.0\n",
+      "kiwisolver                    1.4.2\n",
+      "lazy-object-proxy             1.6.0\n",
+      "libarchive-c                  2.9\n",
+      "llvmlite                      0.38.0\n",
+      "locket                        1.0.0\n",
+      "lxml                          4.9.1\n",
+      "lz4                           3.1.3\n",
+      "Markdown                      3.3.4\n",
+      "MarkupSafe                    2.0.1\n",
+      "matplotlib                    3.5.2\n",
+      "matplotlib-inline             0.1.6\n",
+      "mccabe                        0.6.1\n",
+      "menuinst                      1.4.19\n",
+      "mistune                       0.8.4\n",
+      "mkl-fft                       1.3.1\n",
+      "mkl-random                    1.2.2\n",
+      "mkl-service                   2.4.0\n",
+      "mock                          4.0.3\n",
+      "mpmath                        1.2.1\n",
+      "msgpack                       1.0.3\n",
+      "multipledispatch              0.6.0\n",
+      "munkres                       1.1.4\n",
+      "mypy-extensions               0.4.3\n",
+      "navigator-updater             0.3.0\n",
+      "nbclassic                     0.3.5\n",
+      "nbclient                      0.5.13\n",
+      "nbconvert                     6.4.4\n",
+      "nbformat                      5.5.0\n",
+      "nest-asyncio                  1.5.5\n",
+      "networkx                      2.8.4\n",
+      "nltk                          3.7\n",
+      "nose                          1.3.7\n",
+      "notebook                      6.4.12\n",
+      "numba                         0.55.1\n",
+      "numexpr                       2.8.3\n",
+      "numpy                         1.21.5\n",
+      "numpydoc                      1.4.0\n",
+      "olefile                       0.46\n",
+      "openpyxl                      3.0.10\n",
+      "packaging                     21.3\n",
+      "pandas                        1.4.4\n",
+      "pandocfilters                 1.5.0\n",
+      "panel                         0.13.1\n",
+      "param                         1.12.0\n",
+      "paramiko                      2.8.1\n",
+      "parsel                        1.6.0\n",
+      "parso                         0.8.3\n",
+      "partd                         1.2.0\n",
+      "pathlib                       1.0.1\n",
+      "pathspec                      0.9.0\n",
+      "patsy                         0.5.2\n",
+      "pep8                          1.7.1\n",
+      "pexpect                       4.8.0\n",
+      "pickleshare                   0.7.5\n",
+      "Pillow                        9.2.0\n",
+      "pip                           22.2.2\n",
+      "pkginfo                       1.8.2\n",
+      "platformdirs                  2.5.2\n",
+      "plotly                        5.9.0\n",
+      "pluggy                        1.0.0\n",
+      "poyo                          0.5.0\n",
+      "prometheus-client             0.14.1\n",
+      "prompt-toolkit                3.0.20\n",
+      "Protego                       0.1.16\n",
+      "psutil                        5.9.0\n",
+      "ptyprocess                    0.7.0\n",
+      "py                            1.11.0\n",
+      "pyasn1                        0.4.8\n",
+      "pyasn1-modules                0.2.8\n",
+      "pycodestyle                   2.8.0\n",
+      "pycosat                       0.6.3\n",
+      "pycparser                     2.21\n",
+      "pyct                          0.4.8\n",
+      "pycurl                        7.45.1\n",
+      "PyDispatcher                  2.0.5\n",
+      "pydocstyle                    6.1.1\n",
+      "pyerfa                        2.0.0\n",
+      "pyflakes                      2.4.0\n",
+      "Pygments                      2.11.2\n",
+      "PyHamcrest                    2.0.2\n",
+      "PyJWT                         2.4.0\n",
+      "pylint                        2.14.5\n",
+      "pyls-spyder                   0.4.0\n",
+      "PyNaCl                        1.5.0\n",
+      "pyodbc                        4.0.34\n",
+      "pyOpenSSL                     22.0.0\n",
+      "pyparsing                     3.0.9\n",
+      "pyrsistent                    0.18.0\n",
+      "PySocks                       1.7.1\n",
+      "pytest                        7.1.2\n",
+      "python-dateutil               2.8.2\n",
+      "python-lsp-black              1.0.0\n",
+      "python-lsp-jsonrpc            1.0.0\n",
+      "python-lsp-server             1.3.3\n",
+      "python-slugify                5.0.2\n",
+      "python-snappy                 0.6.0\n",
+      "pytz                          2022.1\n",
+      "pyviz-comms                   2.0.2\n",
+      "PyWavelets                    1.3.0\n",
+      "pywin32                       302\n",
+      "pywin32-ctypes                0.2.0\n",
+      "pywinpty                      2.0.2\n",
+      "PyYAML                        6.0\n",
+      "pyzmq                         23.2.0\n",
+      "QDarkStyle                    3.0.2\n",
+      "qstylizer                     0.1.10\n",
+      "QtAwesome                     1.0.3\n",
+      "qtconsole                     5.2.2\n",
+      "QtPy                          2.2.0\n",
+      "queuelib                      1.5.0\n",
+      "regex                         2022.7.9\n",
+      "requests                      2.28.1\n",
+      "requests-file                 1.5.1\n",
+      "rope                          0.22.0\n",
+      "Rtree                         0.9.7\n",
+      "ruamel-yaml-conda             0.15.100\n",
+      "s3transfer                    0.6.0\n",
+      "scikit-image                  0.19.2\n",
+      "scikit-learn                  1.0.2\n",
+      "scikit-learn-intelex          2021.20221004.171935\n",
+      "scipy                         1.9.1\n",
+      "Scrapy                        2.6.2\n",
+      "seaborn                       0.13.0\n",
+      "Send2Trash                    1.8.0\n",
+      "service-identity              18.1.0\n",
+      "setuptools                    63.4.1\n",
+      "sip                           4.19.13\n",
+      "six                           1.16.0\n",
+      "smart-open                    5.2.1\n",
+      "sniffio                       1.2.0\n",
+      "snowballstemmer               2.2.0\n",
+      "sortedcollections             2.1.0\n",
+      "sortedcontainers              2.4.0\n",
+      "soupsieve                     2.3.1\n",
+      "Sphinx                        5.0.2\n",
+      "sphinxcontrib-applehelp       1.0.2\n",
+      "sphinxcontrib-devhelp         1.0.2\n",
+      "sphinxcontrib-htmlhelp        2.0.0\n",
+      "sphinxcontrib-jsmath          1.0.1\n",
+      "sphinxcontrib-qthelp          1.0.3\n",
+      "sphinxcontrib-serializinghtml 1.1.5\n",
+      "spyder                        5.2.2\n",
+      "spyder-kernels                2.2.1\n",
+      "SQLAlchemy                    1.4.39\n",
+      "statsmodels                   0.13.2\n",
+      "sympy                         1.10.1\n",
+      "tables                        3.6.1\n",
+      "tabulate                      0.8.10\n",
+      "TBB                           0.2\n",
+      "tblib                         1.7.0\n",
+      "tenacity                      8.0.1\n",
+      "terminado                     0.13.1\n",
+      "testpath                      0.6.0\n",
+      "text-unidecode                1.3\n",
+      "textdistance                  4.2.1\n",
+      "threadpoolctl                 2.2.0\n",
+      "three-merge                   0.1.1\n",
+      "tifffile                      2021.7.2\n",
+      "tinycss                       0.4\n",
+      "tldextract                    3.2.0\n",
+      "toml                          0.10.2\n",
+      "tomli                         2.0.1\n",
+      "tomlkit                       0.11.1\n",
+      "toolz                         0.11.2\n",
+      "tornado                       6.1\n",
+      "tqdm                          4.64.1\n",
+      "traitlets                     5.1.1\n",
+      "Twisted                       22.2.0\n",
+      "twisted-iocpsupport           1.0.2\n",
+      "typing_extensions             4.3.0\n",
+      "ujson                         5.4.0\n",
+      "Unidecode                     1.2.0\n",
+      "urllib3                       1.26.11\n",
+      "w3lib                         1.21.0\n",
+      "watchdog                      2.1.6\n",
+      "wcwidth                       0.2.5\n",
+      "webencodings                  0.5.1\n",
+      "websocket-client              0.58.0\n",
+      "Werkzeug                      2.0.3\n",
+      "wheel                         0.37.1\n",
+      "widgetsnbextension            3.5.2\n",
+      "win-inet-pton                 1.1.0\n",
+      "win-unicode-console           0.5\n",
+      "wincertstore                  0.2\n",
+      "wrapt                         1.14.1\n",
+      "xarray                        0.20.1\n",
+      "xlrd                          2.0.1\n",
+      "XlsxWriter                    3.0.3\n",
+      "xlwings                       0.27.15\n",
+      "yapf                          0.31.0\n",
+      "zict                          2.1.0\n",
+      "zipp                          3.8.0\n",
+      "zope.interface                5.4.0\n"
+     ]
+    }
+   ],
+   "source": [
+    "!pip list"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "id": "U7f-zm3-YKoA"
+   },
+   "source": [
+    "Anaconda comes readily with a set of Python packages. This eases your work of installing these packages from scratch, one by one! If you need to upgrade any of these packages, you can issue the following command to upgrade a package called `seaborn`:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 93,
+   "metadata": {
+    "id": "wHs4GofQYKoB"
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Requirement already satisfied: seaborn in c:\\users\\bekak\\anaconda3\\lib\\site-packages (0.13.0)\n",
+      "Requirement already satisfied: matplotlib!=3.6.1,>=3.3 in c:\\users\\bekak\\anaconda3\\lib\\site-packages (from seaborn) (3.5.2)\n",
+      "Requirement already satisfied: numpy!=1.24.0,>=1.20 in c:\\users\\bekak\\anaconda3\\lib\\site-packages (from seaborn) (1.21.5)\n",
+      "Requirement already satisfied: pandas>=1.2 in c:\\users\\bekak\\anaconda3\\lib\\site-packages (from seaborn) (1.4.4)\n",
+      "Requirement already satisfied: packaging>=20.0 in c:\\users\\bekak\\anaconda3\\lib\\site-packages (from matplotlib!=3.6.1,>=3.3->seaborn) (21.3)\n",
+      "Requirement already satisfied: cycler>=0.10 in c:\\users\\bekak\\anaconda3\\lib\\site-packages (from matplotlib!=3.6.1,>=3.3->seaborn) (0.11.0)\n",
+      "Requirement already satisfied: pillow>=6.2.0 in c:\\users\\bekak\\anaconda3\\lib\\site-packages (from matplotlib!=3.6.1,>=3.3->seaborn) (9.2.0)\n",
+      "Requirement already satisfied: python-dateutil>=2.7 in c:\\users\\bekak\\anaconda3\\lib\\site-packages (from matplotlib!=3.6.1,>=3.3->seaborn) (2.8.2)\n",
+      "Requirement already satisfied: kiwisolver>=1.0.1 in c:\\users\\bekak\\anaconda3\\lib\\site-packages (from matplotlib!=3.6.1,>=3.3->seaborn) (1.4.2)\n",
+      "Requirement already satisfied: fonttools>=4.22.0 in c:\\users\\bekak\\anaconda3\\lib\\site-packages (from matplotlib!=3.6.1,>=3.3->seaborn) (4.25.0)\n",
+      "Requirement already satisfied: pyparsing>=2.2.1 in c:\\users\\bekak\\anaconda3\\lib\\site-packages (from matplotlib!=3.6.1,>=3.3->seaborn) (3.0.9)\n",
+      "Requirement already satisfied: pytz>=2020.1 in c:\\users\\bekak\\anaconda3\\lib\\site-packages (from pandas>=1.2->seaborn) (2022.1)\n",
+      "Requirement already satisfied: six>=1.5 in c:\\users\\bekak\\anaconda3\\lib\\site-packages (from python-dateutil>=2.7->matplotlib!=3.6.1,>=3.3->seaborn) (1.16.0)\n"
+     ]
+    }
+   ],
+   "source": [
+    "!pip install --upgrade seaborn"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "id": "mZLK7epEYKoD"
+   },
+   "source": [
+    "> **Note**: On a fresh installation of Anaconda on your personal computer, most of the pre-installed packages may be already up to date. "
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "id": "LawWC3d3YKoE"
+   },
+   "source": [
+    "### Basic data types\n",
+    "\n",
+    "Python variables do not need explicit declaration to reserve memory space. The declaration happens automatically when you assign a value to a variable. The equal sign (=) is used to assign values to variables."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 94,
+   "metadata": {
+    "id": "Us-RmWu2YKoE"
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "100\n",
+      "1000.0\n",
+      "John\n"
+     ]
+    }
+   ],
+   "source": [
+    "counter= 100     # An integer assignment \n",
+    "miles= 1000.0    # A floating point \n",
+    "name = \"John\"    # A string \n",
+    "print(counter) \n",
+    "print(miles) \n",
+    "print(name)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "id": "3Bj9jNNJYKoH"
+   },
+   "source": [
+    "### Numbers"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "id": "4Jy4aIABYKoI"
+   },
+   "source": [
+    "Quantitative information arises everywhere in data science. In addition to representing commands to print out lines, expressions can represent numbers and methods of combining numbers. Integers and floats work as you would expect from other languages:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 95,
+   "metadata": {
+    "id": "jCl8eiY4YKoI"
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "3\n"
+     ]
+    },
+    {
+     "data": {
+      "text/plain": [
+       "int"
+      ]
+     },
+     "execution_count": 95,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "x = 3\n",
+    "print(x)\n",
+    "type(x)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "id": "bbW975PqYKoL"
+   },
+   "source": [
+    "In the IPython (interactive Python) environment which Jupyter notebook or Google Colab is running on, you actually do not need to even call the `print` function:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 96,
+   "metadata": {
+    "id": "hE7gI6HFYKoL"
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "32.5"
+      ]
+     },
+     "execution_count": 96,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "32.5"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "id": "JaiU6hZdYKoO"
+   },
+   "source": [
+    "When you run a notebook cell, if the last line has a value, then Jupyter helpfully prints out that value for you. However, it won't print out prior lines automatically."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 97,
+   "metadata": {
+    "id": "SUCT1eZAYKoP"
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "2\n"
+     ]
+    },
+    {
+     "data": {
+      "text/plain": [
+       "4"
+      ]
+     },
+     "execution_count": 97,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "print(2)\n",
+    "3\n",
+    "4"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "id": "nTIxTNYoYKoS"
+   },
+   "source": [
+    "Above, you should see that 4 is the value of the last expression, 2 is printed, but 3 is lost forever because it was neither printed nor last.\n",
+    "\n",
+    "You don't want to print everything all the time anyway.  But if you feel sorry for 3, change the cell above to print it."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 98,
+   "metadata": {
+    "id": "WESJ5RmEYKoT"
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "4\n",
+      "2\n",
+      "6\n",
+      "9\n"
+     ]
+    }
+   ],
+   "source": [
+    "print(x + 1)   # Addition;\n",
+    "print(x - 1)   # Subtraction;\n",
+    "print(x * 2)   # Multiplication;\n",
+    "print(x ** 2)  # Exponentiation;"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 99,
+   "metadata": {
+    "id": "RFbyKHqnYKoW"
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "4\n",
+      "8\n"
+     ]
+    }
+   ],
+   "source": [
+    "x += 1\n",
+    "print(x)  # Prints \"4\"\n",
+    "x *= 2\n",
+    "print(x)  # Prints \"8\""
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 100,
+   "metadata": {
+    "id": "XBupGJevYKoY"
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "<class 'float'>\n",
+      "2.5 3.5 5.0 6.25\n"
+     ]
+    }
+   ],
+   "source": [
+    "y = 2.5\n",
+    "print(type(y)) # Prints \"<type 'float'>\"\n",
+    "print(y, y + 1, y * 2, y ** 2) # Prints \"2.5 3.5 5.0 6.25\""
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "id": "3m_AO5wLYKoa"
+   },
+   "source": [
+    "Notice how versatile the `print` function is? You can use it to print the output of some other command, such as `type(y)` in the first one. In the second one, you can also specify multiple expressions to be printed out, separated by a comma.\n",
+    "\n",
+    "**Note**: Unlike many languages, Python does not have unary increment (x++) or decrement (x--) operators.\n",
+    "\n",
+    "Python also has built-in types for long integers and complex numbers; you can find all of the details in the [documentation](https://docs.python.org/3.8/library/stdtypes.html#numeric-types-int-float-long-complex)."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "id": "pmRa-fggYKoa"
+   },
+   "source": [
+    "### Arithmetic"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 101,
+   "metadata": {
+    "id": "XwVCnpWhYKob"
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "1.75"
+      ]
+     },
+     "execution_count": 101,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "3.25 - 1.5"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "id": "ez2r_g0hYKod"
+   },
+   "source": [
+    "As expected, the cell executes the arithmetic expression given and shows the answer. Many basic arithmetic operations are built into Python. The order of operations is the same as what you learned in elementary school, and Python also has parentheses. For example, compare the outputs of the cells below. The second cell uses parentheses which gets us a different answer!"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 102,
+   "metadata": {
+    "id": "j-63mEkdYKod"
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "-723.0"
+      ]
+     },
+     "execution_count": 102,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "3+6*5-6*3**2*2**3/4*7"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 103,
+   "metadata": {
+    "id": "nHlJ2IwGYKog"
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "2019.0"
+      ]
+     },
+     "execution_count": 103,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "3+(6*5-(6*3))**2*((2**3)/4*7)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "id": "87aPfHgMYKoj"
+   },
+   "source": [
+    "**Q1.** Write a Python expression in this next cell that's equal to $16 \\frac{2}{3} + 4\\frac{12}{13} \\times \\frac{30}{11} + 2^{.5 \\times 22} +\\frac{42\\times 18}{33}$. Use parentheses carefully.\n",
+    "\n",
+    "*Note*: By \"$16 \\frac{2}{3}$\" we mean $16+\\frac{2}{3}$, not $16 \\times \\frac{2}{3}$. Math!\n",
+    "\n",
+    "*Hint:* The correct output should be the numerical part of our subject code."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 104,
+   "metadata": {
+    "id": "qfVajzzvYKoj"
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "77.20593846544818"
+      ]
+     },
+     "execution_count": 104,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "16 + 2/3 + 4 + 12/13 * 30/11 + 2**0.5 * 22 + 42 * 18/33"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "id": "mvQs5_DiYKom"
+   },
+   "source": [
+    "### Names\n",
+    "\n",
+    "In Python, we can give names (what we all know as \"variables\") to expressions with *assignment statements*. An assignment statement has a name on the left side of an `=` sign and an expression to be evaluated on the right."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 105,
+   "metadata": {
+    "id": "IEnwvNDBYKom"
+   },
+   "outputs": [],
+   "source": [
+    "ten = 3 * 2 + 4"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "id": "xEYS6hVDYKop"
+   },
+   "source": [
+    "After you run that cell, the value 10 is bound to the name `ten`:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 106,
+   "metadata": {
+    "id": "eSN3mldoYKop"
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "10"
+      ]
+     },
+     "execution_count": 106,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "ten"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "id": "HZrpQTQsYKor"
+   },
+   "source": [
+    "A common pattern in Jupyter notebooks is to assign a value to a name and then immediately evaluate the name in the last line in the cell so that the value is displayed as output. "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 107,
+   "metadata": {
+    "id": "s1-MFdMVYKos"
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "3.1415929203539825"
+      ]
+     },
+     "execution_count": 107,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "close_to_pi = 355/113\n",
+    "close_to_pi"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "id": "ch6gDhqsYKou"
+   },
+   "source": [
+    "Another common pattern is that a series of lines in a single cell will build up a complex computation in stages, naming the intermediate results."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 108,
+   "metadata": {
+    "id": "Dh2RTV6KYKou"
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "20190.0"
+      ]
+     },
+     "execution_count": 108,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "semimonthly_salary = 841.25\n",
+    "monthly_salary = 2 * semimonthly_salary\n",
+    "number_of_months_in_a_year = 12\n",
+    "yearly_salary = number_of_months_in_a_year * monthly_salary\n",
+    "yearly_salary"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "id": "tqO4T2P7YKox"
+   },
+   "source": [
+    "Names in Python can have letters (upper- and lower-case letters are both okay and count as different letters), underscores, and numbers. The first character can't be a number (otherwise a name might look like a number). And names can't contain spaces, since spaces are used to separate pieces of code from each other. Other than those rules, what you name something doesn't matter *to Python*. **However**, names are very important for making your code *readable* to yourself and others. "
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "id": "v2DxVGXGYKoy"
+   },
+   "source": [
+    "**Q2**: Assign the name `seconds_in_a_decade` to the number of seconds between midnight January 1, 2010 and midnight January 1, 2020. Note that there are two leap years in this span of a decade. A non-leap year has 365 days and a leap year has 366 days."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 109,
+   "metadata": {
+    "id": "QDcx55czYKoy"
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "315532800\n"
+     ]
+    }
+   ],
+   "source": [
+    "# Number of seconds in a minute, hour, day, and year\n",
+    "seconds_per_minute = 60\n",
+    "seconds_per_hour = 60 * seconds_per_minute\n",
+    "seconds_per_day = 24 * seconds_per_hour\n",
+    "seconds_per_non_leap_year = 365 * seconds_per_day\n",
+    "seconds_per_leap_year = 366 * seconds_per_day\n",
+    "\n",
+    "# Number of years in a decade\n",
+    "years_in_a_decade = 10\n",
+    "\n",
+    "# Number of leap years in the given decade (2012 and 2016)\n",
+    "leap_years = 2\n",
+    "\n",
+    "# Calculate the total number of seconds in a decade\n",
+    "seconds_in_a_decade = (years_in_a_decade - leap_years) * seconds_per_non_leap_year + leap_years * seconds_per_leap_year\n",
+    "\n",
+    "# Print the result\n",
+    "print(seconds_in_a_decade)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "id": "4Vf9XoEnYKo0"
+   },
+   "source": [
+    "### Booleans"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "id": "YRrAnwlZYKo1"
+   },
+   "source": [
+    "Python implements all of the usual operators for Boolean logic, but uses English words rather than symbols (`&&`, `||`, etc.):"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 110,
+   "metadata": {
+    "id": "qYH7a0eBYKo1"
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "bool"
+      ]
+     },
+     "execution_count": 110,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "t, f = True, False\n",
+    "type(t) # Prints \"<type 'bool'>\""
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "id": "AyOTQr8tYKo4"
+   },
+   "source": [
+    "Now we let's look at the operations:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 111,
+   "metadata": {
+    "id": "MUgHWZ74YKo4"
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "False\n",
+      "True\n",
+      "False\n",
+      "True\n"
+     ]
+    }
+   ],
+   "source": [
+    "print (t and f) # Logical AND;\n",
+    "print (t or f)  # Logical OR;\n",
+    "print (not t)   # Logical NOT;\n",
+    "print (t != f)  # Logical XOR;"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "id": "tp0StLo9YKo6"
+   },
+   "source": [
+    "### Strings\n",
+    "\n",
+    "Like any other programming language, Python can process strings, or a sequence of characters. To make things less complicated, Python does not have a character data type, a single character is simply a string with a length of 1!\n",
+    "\n",
+    "We see how multiple strings can be printed out together. Here are three ways:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 112,
+   "metadata": {
+    "id": "DC4z_PpMYKo7"
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "hello 5\n"
+     ]
+    }
+   ],
+   "source": [
+    "hello = 'hello'   # String literals can use single quotes\n",
+    "world = \"world\"   # or double quotes; it does not matter.\n",
+    "print (hello, len(hello))"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 113,
+   "metadata": {
+    "id": "bjJq-DASYKo9"
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "hello world\n"
+     ]
+    }
+   ],
+   "source": [
+    "hw = hello + ' ' + world  # String concatenation\n",
+    "print (hw)  "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 114,
+   "metadata": {
+    "id": "XmxpNMrhYKpB"
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "hello world 12\n"
+     ]
+    }
+   ],
+   "source": [
+    "hw12 = '%s %s %d' % (hello, world, 12)  # sprintf style string formatting\n",
+    "print (hw12)  "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 115,
+   "metadata": {
+    "id": "ha2yvzyhYKpD"
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "hello world 24\n"
+     ]
+    }
+   ],
+   "source": [
+    "hw24 = '{} {} {}'.format(hello, world, 24)  # .format with empty brace placeholders\n",
+    "print (hw24) "
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "id": "pNxX7j9zYKpF"
+   },
+   "source": [
+    "String objects have a bunch of useful methods; for example:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 116,
+   "metadata": {
+    "id": "XZ-CbGt8YKpF"
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Hello\n",
+      "HELLO\n",
+      "  hello\n",
+      " hello \n",
+      "he(ell)(ell)o\n",
+      "world\n"
+     ]
+    }
+   ],
+   "source": [
+    "s = \"hello\"\n",
+    "print (s.capitalize())  # Capitalize a string; prints \"Hello\"\n",
+    "print (s.upper())       # Convert a string to uppercase; prints \"HELLO\"\n",
+    "print (s.rjust(7))      # Right-justify a string, padding with spaces; prints \"  hello\"\n",
+    "print (s.center(7))     # Center a string, padding with spaces; prints \" hello \"\n",
+    "print (s.replace('l', '(ell)'))  # Replace all instances of one substring with another;\n",
+    "                               # prints \"he(ell)(ell)o\"\n",
+    "print ('  world '.strip())  # Strip leading and trailing whitespace; prints \"world\""
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "id": "3MtJKufPYKpK"
+   },
+   "source": [
+    "You can find a list of all string methods in the [documentation](https://docs.python.org/3.8/library/stdtypes.html#string-methods)."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "id": "m6jT9JLJYKpL"
+   },
+   "source": [
+    "## 2. Functions\n",
+    "\n",
+    "The most common way to combine or manipulate values in Python is by calling functions. Python comes with many built-in functions that perform common operations.\n",
+    "\n",
+    "For example, the `abs` function takes a single number as its argument and returns the absolute value of that number. Run the next two cells and see if you understand the output."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 117,
+   "metadata": {
+    "id": "SACfO5IQYKpL"
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "5"
+      ]
+     },
+     "execution_count": 117,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "abs(5)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 118,
+   "metadata": {
+    "id": "KQyDmt-PYKpP"
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "5"
+      ]
+     },
+     "execution_count": 118,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "abs(-5)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "id": "EisMEJH7YKpU"
+   },
+   "source": [
+    "**Q3**: \n",
+    "\n",
+    "Farah is on the corner of 7th Avenue and 42nd Street in Midtown Manhattan, and she wants to know far she'd have to walk to get to school on the corner of 10th Avenue and 34th Street.\n",
+    "\n",
+    "She can't cut across blocks diagonally, since there are buildings in the way.  She has to walk along the sidewalks.  Using the map below, she sees she'd have to walk 3 avenues (long blocks) and 8 streets (short blocks).  In terms of the given numbers, she computed 3 as the difference between 7 and 10, *in absolute value*, and 8 similarly.  \n",
+    "\n",
+    "Farah also knows that blocks in Manhattan are all about 80m by 274m (avenues are farther apart than streets). So in total, how far would she have to walk to get to the park?\n",
+    "\n",
+    "<img src=\"https://raw.githubusercontent.com/data-8/materials-su19/master/materials/su19/lab/lab01/map.jpg\" width=600 />\n",
+    "\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 119,
+   "metadata": {
+    "id": "G4aw2zbEYKpV"
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "1462"
+      ]
+     },
+     "execution_count": 119,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "# Here's the number of streets away:\n",
+    "num_streets_away = 8 \n",
+    "\n",
+    "# Compute the number of avenues away in a similar way:\n",
+    "num_avenues_away = 3 \n",
+    "\n",
+    "street_length_m = 80 \n",
+    "avenue_length_m = 274 \n",
+    "\n",
+    "# Now we compute the total distance Farah must walk.\n",
+    "manhattan_distance =  num_streets_away * street_length_m + num_avenues_away * avenue_length_m\n",
+    "\n",
+    "# We've included this line so that you see the distance you've computed \n",
+    "# when you run this cell.  \n",
+    "# You don't need to change it, but you can if you want.\n",
+    "manhattan_distance"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "id": "s68ERHxXYKpZ"
+   },
+   "source": [
+    "Some functions take multiple arguments, separated by commas. For example, the built-in `max` function returns the maximum argument passed to it."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 120,
+   "metadata": {
+    "id": "jbTxQHtEYKpZ"
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "4"
+      ]
+     },
+     "execution_count": 120,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "max(2, -3, 4, -5)   # try adding more arguments     "
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "id": "Cgu-oO8KYKpc"
+   },
+   "source": [
+    "Of course, the beauty of programming is such that we need to create our own Python functions in order to modularize our code further. Functions are defined using the `def` keyword. For example:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 121,
+   "metadata": {
+    "id": "nW_AE2qnYKpd"
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "negative\n",
+      "zero\n",
+      "positive\n"
+     ]
+    }
+   ],
+   "source": [
+    "def sign(x):\n",
+    "    if x > 0:\n",
+    "        return 'positive'\n",
+    "    elif x < 0:\n",
+    "        return 'negative'\n",
+    "    else:\n",
+    "        return 'zero'\n",
+    "\n",
+    "# note that from this point forward, it's no longer under the function but lines of code \n",
+    "# that are to be executed. The surest way is to look at the indentations (Python forces indentations)\n",
+    "for x in [-1, 0, 1]:\n",
+    "    print(sign(x))"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "id": "9Z13rr8JYKpf"
+   },
+   "source": [
+    "We will often define functions to take optional keyword arguments, like this:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 122,
+   "metadata": {
+    "id": "8i9vrh1UYKpf"
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Hello, Bob!\n",
+      "HELLO, FRED\n"
+     ]
+    }
+   ],
+   "source": [
+    "def hello(name, loud=False):\n",
+    "    if loud:\n",
+    "        print ('HELLO, %s' % name.upper())\n",
+    "    else:\n",
+    "        print ('Hello, %s!' % name)\n",
+    "\n",
+    "hello('Bob')\n",
+    "hello('Fred', loud=True)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "id": "F5NJXUDzYKpi"
+   },
+   "source": [
+    "### Control Flow: Conditions"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "id": "B3xB7DwXYKpi"
+   },
+   "source": [
+    "You can perform an action conditionally using a typical if-else block:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 123,
+   "metadata": {
+    "id": "TQyXwlKEYKpj"
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Your balance is 0 or above.\n"
+     ]
+    }
+   ],
+   "source": [
+    "balance = 400\n",
+    "if balance < 0:\n",
+    "    print(\"Balance is below 0, add funds now or you will be charged a penalty.\")\n",
+    "elif balance == 0:\n",
+    "    print(\"Balance is equal to 0, add funds soon.\")\n",
+    "else:\n",
+    "    print(\"Your balance is 0 or above.\")"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "id": "dYJfzKEdYKpk"
+   },
+   "source": [
+    "In Python, we do not have \"else if\" but `elif` instead (kind of short form). Similar to all block structures in Python (functions, loops, etc.), you need to end each conditional expression with a colon \":\" and subsequent lines in that block have to be indented."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 124,
+   "metadata": {
+    "colab": {
+     "base_uri": "https://localhost:8080/"
+    },
+    "id": "ijdrzqCOYKpl",
+    "outputId": "ff40b9a2-743e-4621-ef06-b46360be44af"
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "License and registration please\n",
+      "You have the right to remain silent.\n"
+     ]
+    }
+   ],
+   "source": [
+    "speed = 105\n",
+    "mood = 'bad'\n",
+    "\n",
+    "if speed >= 80:\n",
+    "    print('License and registration please')\n",
+    "    if mood == 'terrible' or speed >= 100:\n",
+    "        print('You have the right to remain silent.')\n",
+    "    elif mood == 'bad' or speed >= 90:\n",
+    "        print(\"I'm going to have to write you a ticket.\")\n",
+    "    else:\n",
+    "        print(\"Let's try to keep it under 80 ok?\")"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "id": "FFlbBZeOYKpt"
+   },
+   "source": [
+    "**Q4** Write a function that checks whether the first character of a word starts with 'A' and second character of a word starts with 'L'."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 125,
+   "metadata": {
+    "id": "YjaCi54jYKpt"
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "True\n",
+      "True\n",
+      "False\n"
+     ]
+    }
+   ],
+   "source": [
+    "#Write your code here\n",
+    "def starts_with_AL(word):\n",
+    "    # Check if the length of the word is at least 2\n",
+    "    if len(word) >= 2:\n",
+    "        # Check if the first character is 'A' and the second character is 'L'\n",
+    "        if word[0] == 'A' and word[1] == 'L':\n",
+    "            return True\n",
+    "    return False\n",
+    "\n",
+    "# Example usage:\n",
+    "word1 = \"ALphabet\"\n",
+    "word2 = \"ALien\"\n",
+    "word3 = \"Python\"\n",
+    "\n",
+    "print(starts_with_AL(word1))  # True\n",
+    "print(starts_with_AL(word2))  # True\n",
+    "print(starts_with_AL(word3))  # False"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "id": "Na8tFTsXYKpx"
+   },
+   "source": [
+    "**Q5** Write a function that compares among two numbers and identify which is the biggest number. If the two numbers are the same, it will print that both of the numbers are the same.  "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 126,
+   "metadata": {
+    "id": "-R1-nuAgYKpx"
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "11\n"
+     ]
+    }
+   ],
+   "source": [
+    "# Write your code here \n",
+    "def bigger(a,b):\n",
+    "    # fill in here\n",
+    "       if a > b:\n",
+    "            return a\n",
+    "       elif b > a:\n",
+    "                return b\n",
+    "       else:\n",
+    "                return \"Both numbers are the same\"\n",
+    "    \n",
+    "c = bigger(7,11)\n",
+    "print (c)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "id": "wRbbyaMUYKp3"
+   },
+   "source": [
+    "### Control Flow: Repetition\n",
+    "\n",
+    "Python has a `while` loop, which continues iterating until its condition stops being true:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 127,
+   "metadata": {
+    "id": "GDM_lN1MYKp4"
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "1\n",
+      "2\n",
+      "3\n",
+      "4\n",
+      "5\n",
+      "6\n",
+      "7\n",
+      "8\n",
+      "9\n",
+      "10\n"
+     ]
+    }
+   ],
+   "source": [
+    "i = 0\n",
+    "\n",
+    "while i < 10:\n",
+    "    i = i + 1\n",
+    "    print(i) "
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "id": "Cz8LKBd2YKqA"
+   },
+   "source": [
+    "Of course, what you saw was an infinite loop! Notice that the asterisk at the side of the cell does not turn into a run number (still computing...). Press on the **STOP** icon under the menu to abort any runaway code.\n",
+    "\n",
+    "More complex logic can be created with typical keywords such as break and continue:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 128,
+   "metadata": {
+    "id": "xff2zv9YYKqA"
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "here 5\n"
+     ]
+    }
+   ],
+   "source": [
+    "for x in range(10): \n",
+    "    if x==3: \n",
+    "        continue \n",
+    "    if x==5: \n",
+    "        break \n",
+    "print(\"here\", x)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "id": "RTupdFulYKqG"
+   },
+   "source": [
+    "Indentation is a requirement in Python. Hence, indentations play a big role in determining the structure of these loops and conditional blocks."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "id": "K0okjtrfYKqG"
+   },
+   "source": [
+    "**For** loops can be used to iterate for a fixed or predetermined number of times. It can also be used together with iterable objects, such as list (we will revisit this later on lists)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 129,
+   "metadata": {
+    "id": "Qt0zfEmjYKqH"
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "0\n",
+      "1\n",
+      "2\n",
+      "3\n"
+     ]
+    }
+   ],
+   "source": [
+    "# A for loop can iterate over the elements of a supplied list\n",
+    "# Note: range(4) does not include 4!\n",
+    "for x in range(4):\n",
+    "    print(x)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 130,
+   "metadata": {
+    "id": "B0sye8fyYKqK"
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "154\n"
+     ]
+    }
+   ],
+   "source": [
+    "# write a for loop to sum all numbers for [3, 41, 12, 9, 74, 15]\n",
+    "sum = 0\n",
+    "a = [3, 41, 12, 9, 74, 15]\n",
+    "for x in a:\n",
+    "    sum = sum + x\n",
+    "print(sum)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "id": "ew1YfQiFYKqM"
+   },
+   "source": [
+    "### Packages & Modules\n",
+    "\n",
+    "Packages are namespaces which contain multiple packages and modules themselves. A module can define functions, classes and variables. Python does not necessary have all features by default, it has only a basic functional set of packages. To enable usage, you need to (install the package/module if necessary) and \"import\" them in your code. Think of \"import\" as the _include_ directive that you are familiar with in C/C++."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 131,
+   "metadata": {
+    "id": "HsUzKNPnYKqM"
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "3.0\n"
+     ]
+    }
+   ],
+   "source": [
+    "import math\n",
+    "print(math.sqrt(9))"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "id": "Pxa-Weg4YKqP"
+   },
+   "source": [
+    "## 3. Containers"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "id": "G5hQaC6VYKqQ"
+   },
+   "source": [
+    "Python includes several built-in container types: lists, dictionaries, tuples. These three are among the most commonly used."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "id": "bURhmRkPYKqQ"
+   },
+   "source": [
+    "### Lists"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "id": "Fq3cn1UKYKqQ"
+   },
+   "source": [
+    "A list is the Python equivalent of an array, but is resizeable and can contain elements of different types:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 132,
+   "metadata": {
+    "id": "QHSxqYxiYKqR"
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "[3, 1, 2] 2\n",
+      "2\n"
+     ]
+    }
+   ],
+   "source": [
+    "xs = [3, 1, 2]   # Create a list\n",
+    "print (xs, xs[2])\n",
+    "print (xs[-1])     # Negative indices count from the end of the list; prints \"2\""
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 133,
+   "metadata": {
+    "id": "jbucA8FDYKqU"
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "[3, 1, 'foo']\n"
+     ]
+    }
+   ],
+   "source": [
+    "xs[2] = 'foo'    # Lists can contain elements of different types\n",
+    "print (xs)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 134,
+   "metadata": {
+    "id": "oIX_Zu25YKqY"
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "[3, 1, 'foo', 'bar']\n"
+     ]
+    }
+   ],
+   "source": [
+    "xs.append('bar') # Add a new element to the end of the list\n",
+    "print (xs)  "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 135,
+   "metadata": {
+    "id": "NMNTqO-DYKqb"
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "bar [3, 1, 'foo']\n"
+     ]
+    }
+   ],
+   "source": [
+    "x = xs.pop()     # Remove and return the last element of the list\n",
+    "print (x, xs) "
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "id": "nwZID8jNYKqd"
+   },
+   "source": [
+    "As usual, you can find all the details about lists in the [documentation](https://docs.python.org/2/tutorial/datastructures.html#more-on-lists)."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "id": "jfpk1M68YKqd"
+   },
+   "source": [
+    "#### Slicing"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "id": "Tanf0OgNYKqd"
+   },
+   "source": [
+    "In addition to accessing list elements one at a time, Python provides concise syntax to access sublists; this is known as slicing:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 136,
+   "metadata": {
+    "id": "linn-p-WYKqe"
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "[0, 1, 2, 3, 4]\n",
+      "[2, 3]\n",
+      "[2, 3, 4]\n",
+      "[0, 1]\n",
+      "[0, 1, 2, 3, 4]\n",
+      "[0, 1, 2, 3]\n",
+      "[0, 1, 8, 9, 4]\n"
+     ]
+    }
+   ],
+   "source": [
+    "nums = range(5)    # range is a built-in function that creates a list of integers\n",
+    "print(list (nums))   # Prints \"[0, 1, 2, 3, 4]\"\n",
+    "print (list(nums[2:4]))    # Get a slice from index 2 to 4 (exclusive); prints \"[2, 3]\"\n",
+    "print (list(nums[2:]))     # Get a slice from index 2 to the end; prints \"[2, 3, 4]\"\n",
+    "print (list(nums[:2]))     # Get a slice from the start to index 2 (exclusive); prints \"[0, 1]\"\n",
+    "print (list(nums[:]))      # Get a slice of the whole list; prints [\"0, 1, 2, 3, 4]\"\n",
+    "print (list(nums[:-1]))    # Slice indices can be negative; prints [\"0, 1, 2, 3]\"\n",
+    "numlist = list(nums)\n",
+    "numlist[2:4] = [8, 9]   # Assign a new sublist to a slice\n",
+    "print (numlist)         # Prints \"[0, 1, 8, 9, 4]\""
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "id": "ARCHFTKBYKqf"
+   },
+   "source": [
+    "#### Revisiting Loops"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "id": "gZoTpzLIYKqg"
+   },
+   "source": [
+    "You can do loops like how you did in other languages:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 137,
+   "metadata": {
+    "id": "bOOWb9LxYKqg"
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "0\n",
+      "1\n",
+      "2\n",
+      "3\n",
+      "4\n"
+     ]
+    }
+   ],
+   "source": [
+    "for i in range(5):\n",
+    "    print(i)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "id": "6stqsIqHYKqj"
+   },
+   "source": [
+    "Oh yes, Python counts from 0, not 1.\n",
+    "\n",
+    "This is more useful. You can loop over the elements of a list like this:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 138,
+   "metadata": {
+    "id": "XxWorm95YKqj"
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "cat\n",
+      "dog\n",
+      "monkey\n"
+     ]
+    }
+   ],
+   "source": [
+    "animals = ['cat', 'dog', 'monkey']\n",
+    "for animal in animals:\n",
+    "    print (animal)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "id": "PZtt2Y5xYKql"
+   },
+   "source": [
+    "If you want access to the index of each element within the body of a loop, use the built-in `enumerate` function:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 139,
+   "metadata": {
+    "id": "ai-PkAMCYKqm"
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "#1: cat\n",
+      "#2: dog\n",
+      "#3: monkey\n"
+     ]
+    }
+   ],
+   "source": [
+    "animals = ['cat', 'dog', 'monkey']\n",
+    "for idx, animal in enumerate(animals):\n",
+    "    print ('#%d: %s' % (idx + 1, animal))"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "id": "F5B59AL2YKqo"
+   },
+   "source": [
+    "#### List comprehensions:"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "id": "JtoDHl6hYKqo"
+   },
+   "source": [
+    "When programming, frequently we want to transform one type of data into another. As a simple example, consider the following code that computes square numbers:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 140,
+   "metadata": {
+    "id": "_jI8Z4mzYKqo"
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "[0, 1, 4, 9, 16]\n"
+     ]
+    }
+   ],
+   "source": [
+    "nums = [0, 1, 2, 3, 4]\n",
+    "squares = []\n",
+    "for x in nums:\n",
+    "    squares.append(x ** 2)\n",
+    "print (squares)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "id": "w27ZCDVNYKqt"
+   },
+   "source": [
+    "You can make this code simpler using a **list comprehension**, a powerful feature that Python has:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 141,
+   "metadata": {
+    "id": "Bdgr29ymYKqt"
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "[0, 1, 4, 9, 16]\n"
+     ]
+    }
+   ],
+   "source": [
+    "nums = [0, 1, 2, 3, 4]\n",
+    "squares = [x ** 2 for x in nums]\n",
+    "print (squares)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "id": "v3BXtnEIYKqw"
+   },
+   "source": [
+    "List comprehensions can also contain conditions:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 142,
+   "metadata": {
+    "id": "IAfndn5FYKqw"
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "[0, 4, 16]\n"
+     ]
+    }
+   ],
+   "source": [
+    "nums = [0, 1, 2, 3, 4]\n",
+    "even_squares = [x ** 2 for x in nums if x % 2 == 0]\n",
+    "print (even_squares)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "id": "gPkXNXwLYKq3"
+   },
+   "source": [
+    "### Dictionaries"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "id": "kcoYPZezYKq3"
+   },
+   "source": [
+    "A dictionary stores (key, value) pairs, similar to a `Map` in Java or an object in Javascript. You can use it like this:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 143,
+   "metadata": {
+    "id": "ij2oKBnLYKq4"
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "cute\n",
+      "True\n"
+     ]
+    }
+   ],
+   "source": [
+    "d = {'cat': 'cute', 'dog': 'furry'}  # Create a new dictionary with some data\n",
+    "print (d['cat'])       # Get an entry from a dictionary; prints \"cute\"\n",
+    "print ('cat' in d)     # Check if a dictionary has a given key; prints \"True\""
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 144,
+   "metadata": {
+    "id": "1BAMzk8_YKq5"
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "wet\n"
+     ]
+    }
+   ],
+   "source": [
+    "d['fish'] = 'wet'    # Set an entry in a dictionary\n",
+    "print (d['fish'])      # Prints \"wet\""
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 145,
+   "metadata": {
+    "id": "YR99BrNcYKq7"
+   },
+   "outputs": [
+    {
+     "ename": "KeyError",
+     "evalue": "'monkey'",
+     "output_type": "error",
+     "traceback": [
+      "\u001b[1;31m---------------------------------------------------------------------------\u001b[0m",
+      "\u001b[1;31mKeyError\u001b[0m                                  Traceback (most recent call last)",
+      "\u001b[1;32m~\\AppData\\Local\\Temp\\ipykernel_26944\\1549722801.py\u001b[0m in \u001b[0;36m<module>\u001b[1;34m\u001b[0m\n\u001b[1;32m----> 1\u001b[1;33m \u001b[0mprint\u001b[0m \u001b[1;33m(\u001b[0m\u001b[0md\u001b[0m\u001b[1;33m[\u001b[0m\u001b[1;34m'monkey'\u001b[0m\u001b[1;33m]\u001b[0m\u001b[1;33m)\u001b[0m  \u001b[1;31m# KeyError: 'monkey' not a key of d\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[0m\n\u001b[0m",
+      "\u001b[1;31mKeyError\u001b[0m: 'monkey'"
+     ]
+    }
+   ],
+   "source": [
+    "print (d['monkey'])  # KeyError: 'monkey' not a key of d"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 146,
+   "metadata": {
+    "id": "2J1dt2zKYKq9"
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "N/A\n",
+      "wet\n"
+     ]
+    }
+   ],
+   "source": [
+    "print (d.get('monkey', 'N/A'))  # Get an element with a default; prints \"N/A\"\n",
+    "print (d.get('fish', 'N/A'))    # Get an element with a default; prints \"wet\""
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 147,
+   "metadata": {
+    "id": "8fqn9otDYKq_"
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "N/A\n"
+     ]
+    }
+   ],
+   "source": [
+    "del d['fish']        # Remove an element from a dictionary\n",
+    "print (d.get('fish', 'N/A')) # \"fish\" is no longer a key; prints \"N/A\""
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "id": "fCptHQ9ZYKrD"
+   },
+   "source": [
+    "We can use dictionaries as a simple way to represent structured data:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 148,
+   "metadata": {
+    "id": "HaOgK9KlYKrD"
+   },
+   "outputs": [],
+   "source": [
+    "tweet = {\n",
+    "    \"user\" : \"joelgrus\",\n",
+    "    \"text\" : \"Data Science is Awesome\",\n",
+    "    \"retweet_count\" : 100,\n",
+    "    \"hashtags\" : [\"#data\", \"#science\", \"#datascience\", \"#awesome\", \"#yolo\"]\n",
+    "}"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "id": "nv4dsdzQYKrF"
+   },
+   "source": [
+    "Some nifty functions can help us list down all keys and/or values:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 149,
+   "metadata": {
+    "id": "1VeygphLYKrF"
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "dict_keys(['user', 'text', 'retweet_count', 'hashtags'])\n",
+      "dict_values(['joelgrus', 'Data Science is Awesome', 100, ['#data', '#science', '#datascience', '#awesome', '#yolo']])\n",
+      "dict_items([('user', 'joelgrus'), ('text', 'Data Science is Awesome'), ('retweet_count', 100), ('hashtags', ['#data', '#science', '#datascience', '#awesome', '#yolo'])])\n"
+     ]
+    }
+   ],
+   "source": [
+    "tweet_keys =tweet.keys()\n",
+    "tweet_values = tweet.values()\n",
+    "tweet_items = tweet.items()\n",
+    "print(tweet_keys)\n",
+    "print(tweet_values)\n",
+    "print(tweet_items)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "id": "eyHvlPSKYKrI"
+   },
+   "source": [
+    "It is easy to iterate over the keys in a dictionary:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 150,
+   "metadata": {
+    "id": "dihzIP27YKrI"
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "A person has 2 legs\n",
+      "A cat has 4 legs\n",
+      "A spider has 8 legs\n"
+     ]
+    }
+   ],
+   "source": [
+    "d = {'person': 2, 'cat': 4, 'spider': 8}\n",
+    "for animal in d:\n",
+    "    legs = d[animal]\n",
+    "    print ('A %s has %d legs' % (animal, legs))"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "id": "PlOURgsUYKrL"
+   },
+   "source": [
+    "If you want access to keys and their corresponding values, use the iteritems method:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 151,
+   "metadata": {
+    "id": "c2UFyQrfYKrL"
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "A person has 2 legs\n",
+      "A cat has 4 legs\n",
+      "A spider has 8 legs\n"
+     ]
+    }
+   ],
+   "source": [
+    "d = {'person': 2, 'cat': 4, 'spider': 8}\n",
+    "for animal, legs in d.items():\n",
+    "    print ('A %s has %d legs' % (animal, legs))"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "id": "LdyhP146YKrO"
+   },
+   "source": [
+    "Dictionary comprehensions: These are similar to list comprehensions, but allow you to easily construct dictionaries. For example:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 152,
+   "metadata": {
+    "id": "I4cMsgujYKrO"
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "{0: 0, 2: 4, 4: 16}\n"
+     ]
+    }
+   ],
+   "source": [
+    "nums = [0, 1, 2, 3, 4]\n",
+    "even_num_to_square = {x: x ** 2 for x in nums if x % 2 == 0}\n",
+    "print (even_num_to_square)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "id": "reKni__9YKrQ"
+   },
+   "source": [
+    "You can find all you need to know about dictionaries in the [documentation](https://docs.python.org/3.8/library/stdtypes.html#dict).\n",
+    "\n",
+    "**Note**: List and dictionaries are most crucial if you are to work with Numpy and Pandas, two very powerful Python libraries."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "id": "Hp0RKZSFYKrQ"
+   },
+   "source": [
+    "### Tuples"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "id": "JCkOAEmrYKrQ"
+   },
+   "source": [
+    "A tuple is an (immutable) ordered list of values. You specify a tuple by using parentheses (or nothing) instead of square brackets. A tuple is in many ways similar to a list; one of the most important differences is that tuples can be used as keys in dictionaries, while lists cannot. Here is a trivial example:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 153,
+   "metadata": {
+    "id": "hvFMMT1TYKrR"
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "<class 'tuple'>\n",
+      "5\n",
+      "1\n"
+     ]
+    }
+   ],
+   "source": [
+    "d = {(x, x + 1): x for x in range(10)}  # Create a dictionary with tuple keys\n",
+    "t = (5, 6)       # Create a tuple\n",
+    "print(type(t))\n",
+    "print (d[t])       \n",
+    "print (d[(1, 2)])"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "id": "uXuIovKKYKrS"
+   },
+   "source": [
+    "You cannot modify a tuple."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 154,
+   "metadata": {
+    "id": "EguEPiwsYKrS"
+   },
+   "outputs": [
+    {
+     "ename": "TypeError",
+     "evalue": "'tuple' object does not support item assignment",
+     "output_type": "error",
+     "traceback": [
+      "\u001b[1;31m---------------------------------------------------------------------------\u001b[0m",
+      "\u001b[1;31mTypeError\u001b[0m                                 Traceback (most recent call last)",
+      "\u001b[1;32m~\\AppData\\Local\\Temp\\ipykernel_26944\\1253691622.py\u001b[0m in \u001b[0;36m<module>\u001b[1;34m\u001b[0m\n\u001b[1;32m----> 1\u001b[1;33m \u001b[0mt\u001b[0m\u001b[1;33m[\u001b[0m\u001b[1;36m0\u001b[0m\u001b[1;33m]\u001b[0m \u001b[1;33m=\u001b[0m \u001b[1;36m1\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[0m\n\u001b[0m",
+      "\u001b[1;31mTypeError\u001b[0m: 'tuple' object does not support item assignment"
+     ]
+    }
+   ],
+   "source": [
+    "t[0] = 1"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "id": "NnYL8kD_YKrU"
+   },
+   "source": [
+    "Tuples are a convenient way to return multiple values from functions:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 155,
+   "metadata": {
+    "id": "Qoum237KYKrU"
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "(5, 6)\n",
+      "15\n",
+      "50\n"
+     ]
+    }
+   ],
+   "source": [
+    "def sum_and_product(x, y):\n",
+    "    return (x + y),(x * y)\n",
+    "\n",
+    "sp = sum_and_product(2, 3)\n",
+    "s, p = sum_and_product(5, 10)\n",
+    "print(sp)\n",
+    "print(s)\n",
+    "print(p)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "id": "AATV1WpsYKrV"
+   },
+   "source": [
+    "### Other features\n",
+    "\n",
+    "Jupyter notebooks are kinda cool. You can easily embed YouTube videos."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 156,
+   "metadata": {
+    "id": "-SEMrsBoYKrW",
+    "scrolled": true
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "\n",
+       "        <iframe\n",
+       "            width=\"400\"\n",
+       "            height=\"300\"\n",
+       "            src=\"https://www.youtube.com/embed/https://www.youtube.com/watch?v=1Pb5mVFCo7k&list=PLerBKHAB5wgrO4WeDVN1QoxuFGBx069MA\"\n",
+       "            frameborder=\"0\"\n",
+       "            allowfullscreen\n",
+       "            \n",
+       "        ></iframe>\n",
+       "        "
+      ],
+      "text/plain": [
+       "<IPython.lib.display.YouTubeVideo at 0x29ac4cb38b0>"
+      ]
+     },
+     "execution_count": 156,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "from IPython.display import YouTubeVideo\n",
+    "YouTubeVideo('https://www.youtube.com/watch?v=1Pb5mVFCo7k&list=PLerBKHAB5wgrO4WeDVN1QoxuFGBx069MA')"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "id": "awDFUzgWYKrY"
+   },
+   "source": [
+    "## 4. Additional Exercises"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "id": "u6UVw0MfYKrY"
+   },
+   "source": [
+    "**AE1**: Print a string a number of times equal to the length of the string."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 157,
+   "metadata": {
+    "id": "KzLZ5be8YKrZ"
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "AE1\n",
+      "AE1\n",
+      "AE1\n"
+     ]
+    }
+   ],
+   "source": [
+    "def print_string_multiple_times(input_string):\n",
+    "    length = len(input_string)\n",
+    "    \n",
+    "    for _ in range(length):\n",
+    "        print(input_string)\n",
+    "\n",
+    "# Example usage:\n",
+    "input_str = \"AE1\"\n",
+    "print_string_multiple_times(input_str)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "id": "jGiA40DtYKrb"
+   },
+   "source": [
+    "**AE2**: Write a function **`Rome2Now`** that converts a Roman numeral (e.g. IV, XVII, MMXIX) to its decimal number form (corresponding e.g. 4, 17, 2019). "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 158,
+   "metadata": {
+    "id": "js36W5j3YKrf",
+    "scrolled": true
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "4\n",
+      "17\n",
+      "2019\n"
+     ]
+    }
+   ],
+   "source": [
+    "def Rome2Now(roman_numeral):\n",
+    "    roman_dict = {\n",
+    "        'I': 1,\n",
+    "        'V': 5,\n",
+    "        'X': 10,\n",
+    "        'L': 50,\n",
+    "        'C': 100,\n",
+    "        'D': 500,\n",
+    "        'M': 1000\n",
+    "    }\n",
+    "\n",
+    "    result = 0\n",
+    "    prev_value = 0\n",
+    "\n",
+    "    for numeral in reversed(roman_numeral):\n",
+    "        value = roman_dict[numeral]\n",
+    "\n",
+    "        if value < prev_value:\n",
+    "            result -= value\n",
+    "        else:\n",
+    "            result += value\n",
+    "\n",
+    "        prev_value = value\n",
+    "\n",
+    "    return result\n",
+    "\n",
+    "# Example usage:\n",
+    "roman_numeral1 = \"IV\"\n",
+    "roman_numeral2 = \"XVII\"\n",
+    "roman_numeral3 = \"MMXIX\"\n",
+    "\n",
+    "result1 = Rome2Now(roman_numeral1)\n",
+    "result2 = Rome2Now(roman_numeral2)\n",
+    "result3 = Rome2Now(roman_numeral3)\n",
+    "\n",
+    "print(result1)  # Output: 4\n",
+    "print(result2)  # Output: 17\n",
+    "print(result3)  # Output: 2019"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "id": "rjCfWgwNYKri"
+   },
+   "source": [
+    "**AE3**: Write two functions to compute the factorial of an integer number: one uses a normal loop, another uses recursive function calls."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 159,
+   "metadata": {
+    "id": "iD5P62RgYKrj"
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "120\n",
+      "120\n"
+     ]
+    }
+   ],
+   "source": [
+    "# Define a function called factorial(n)\n",
+    "def factorial(n):\n",
+    "    # fill in here\n",
+    "    result = 1\n",
+    "    for i in range(1, n + 1):\n",
+    "        result *= i\n",
+    "    return result\n",
+    "def recursive_factorial(n):\n",
+    "    # fill in here\n",
+    "    if n == 0 or n == 1:\n",
+    "        return 1\n",
+    "    else:\n",
+    "        return n * recursive_factorial(n - 1)\n",
+    "answer = factorial(5)\n",
+    "print(answer)\n",
+    "\n",
+    "answer2 = recursive_factorial(5)\n",
+    "print(answer2)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "id": "wcvj78bLYKrm"
+   },
+   "source": [
+    "**AE4**: Define a function that print the list of a specified list after removing even numbers from it."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 160,
+   "metadata": {
+    "id": "yru_joxgYKrn"
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "[7, 25, 27]\n"
+     ]
+    }
+   ],
+   "source": [
+    "# Note: this function will not return any values\n",
+    "num = [7, 8, 120, 25, 44, 20, 27]\n",
+    "def remove_even(x):\n",
+    "    # fill in here\n",
+    "       x = [x for x in x if x % 2 != 0]\n",
+    "       print(x)\n",
+    "    \n",
+    "remove_even(num)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  }
+ ],
+ "metadata": {
+  "colab": {
+   "collapsed_sections": [
+    "wRbbyaMUYKp3"
+   ],
+   "name": "Lab01.ipynb",
+   "provenance": []
+  },
+  "kernelspec": {
+   "display_name": "Python 3 (ipykernel)",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.9.13"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 1
+}
